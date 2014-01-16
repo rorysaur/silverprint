@@ -6,6 +6,9 @@ gem 'rails', '3.2.15'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'rails_12factor'
+gem 'newrelic_rpm'
+
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'ejs'
