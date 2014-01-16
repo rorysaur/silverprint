@@ -1,10 +1,24 @@
+<div class="pull-left">
+  <%= image_tag @user.profile_pic.url(:thumbnail) %>
+</div>
 <h1><%= @user.username %></h1>
 
-<%= image_tag @user.profile_pic.url(:big) %>
+<% if @user == current_user %>
 
-<h3>add profile photo</h3>
+  <h3>add profile photo</h3>
 
-<%= form_for @user do |f| %>
-  <%= f.file_field :profile_pic %>
-  <%= f.submit "upload" %>
+  <%= form_for @user do |f| %>
+    <%= f.file_field :profile_pic %>
+    <%= f.submit "upload" %>
+  <% end %>
+  
+<% end %>
+
+<% @user.photos.try(:each) do |photo| %>
+<div>
+  <%= image_tag photo.photo.url(:normal) %>
+  <% if @user == current_user %>
+    <%= button_to "Delete", photo_url(photo), :method => :delete %>
+  <% end %>
+</div>
 <% end %>

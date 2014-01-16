@@ -19,6 +19,9 @@
     </div>
 
     <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to "New Photo", new_photo_url %></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li><%= link_to current_user.username, user_url(current_user) %></li>

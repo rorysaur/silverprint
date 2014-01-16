@@ -1,0 +1,6 @@
+<h1>add a photo</h1>
+
+<%= form_for @photo do |f| %>
+  <%= f.file_field :photo %>
+  <%= f.submit "upload" %>
+<% end %>

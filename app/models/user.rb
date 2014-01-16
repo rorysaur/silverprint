@@ -17,10 +17,12 @@ class User < ActiveRecord::Base
     :profile_pic,
     :styles => {
       :big => "500x500>",
-      :small => "50x50#"
+      :thumbnail => "50x50#"
     },
     :convert_options => { :all => "-colorspace Gray" }
   )
+
+  has_many :photos
   
   def self.find_by_credentials(user_params)
     user = User.find_by_username(user_params[:username])
