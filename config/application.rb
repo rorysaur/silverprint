@@ -61,6 +61,5 @@ module Silverprint
     
     config.assets.initialize_on_precompile = false
     
-    config.filepicker_rails.api_key = ENV["FILEPICKER_API_KEY"]
   end
 end
