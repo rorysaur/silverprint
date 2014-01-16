@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :password
+  attr_accessible :username, :password, :profile_pic
   attr_reader :password
   
   before_validation :reset_session_token, :on => :create
@@ -11,6 +11,15 @@ class User < ActiveRecord::Base
     :presence => true,
     :length => { :minimum => 6 },
     :on => :create
+  )
+  
+  has_attached_file(
+    :profile_pic,
+    :styles => {
+      :big => "500x500>",
+      :small => "50x50#"
+    },
+    :convert_options => { :all => "-colorspace Gray" }
   )
   
   def self.find_by_credentials(user_params)

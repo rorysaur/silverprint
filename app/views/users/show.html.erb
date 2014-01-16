@@ -1,1 +1,10 @@
 <h1><%= @user.username %></h1>
+
+<%= image_tag @user.profile_pic.url(:big) %>
+
+<h3>add profile photo</h3>
+
+<%= form_for @user do |f| %>
+  <%= f.file_field :profile_pic %>
+  <%= f.submit "upload" %>
+<% end %>

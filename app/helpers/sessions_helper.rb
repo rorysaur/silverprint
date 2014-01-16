@@ -29,6 +29,7 @@ module SessionsHelper
     user = User.find(id)
     unless logged_in? && current_user == user
       flash[:failure] = "You don't have permission to access this page."
+      redirect_to user_url(current_user)
     end
   end
 end
