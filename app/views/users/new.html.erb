@@ -1,17 +1,14 @@
 <h1>Sign up</h1>
 
-<form action="<%= users_url %>" method="post">
-  <input type="hidden" name="authenticity_token"
-    value="<%= form_authenticity_token %>">
-    
-  <label for="user_username">Username</label>
-  <input type="text" name="user[username]" id="user_username">
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
   <br>
   
-  <label for="user_password">Password</label>
-  <input type="password" name="user[password]" id="user_password">
+  <%= f.label :password %>
+  <%= f.password_field :password %>
   <br>
   
-  <input type="submit" value="Sign up">
+  <%= f.submit "Sign up" %>
   
-</form>
+<% end %>
