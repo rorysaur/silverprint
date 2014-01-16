@@ -19,10 +19,36 @@ class User < ActiveRecord::Base
       :big => "500x500>",
       :thumbnail => "50x50#"
     },
-    :convert_options => { :all => "-colorspace Gray" }
+    :convert_options => {
+      :all => "-colorspace Gray"
+    }
   )
 
   has_many :photos
+  
+  has_many(
+    :follows_initiated,
+    :class_name => "Follow",
+    :foreign_key => :follower_id
+  )
+  
+  has_many(
+    :follows_received,
+    :class_name => "Follow",
+    :foreign_key => :followee_id
+  )
+  
+  has_many(
+    :followers,
+    :through => :follows_received,
+    :source => :follower
+  )
+  
+  has_many(
+    :following,
+    :through => :follows_initiated,
+    :source => :followee
+  )
   
   def self.find_by_credentials(user_params)
     user = User.find_by_username(user_params[:username])

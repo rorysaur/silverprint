@@ -3,8 +3,10 @@ Silverprint::Application.routes.draw do
   
   resources :users do
     resources :photos, :only => :index
+    resources :follows, :only => :create
   end
   
   resource :session, :only => [:new, :create, :destroy]
   resources :photos, :only => [:new, :create, :destroy]
+  resources :follows, :only => [:destroy]
 end
