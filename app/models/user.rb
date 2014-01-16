@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     return user if user && user.is_password?(user_params[:password])
   end
   
+  def is_following?(other_user)
+    self.following.include?(other_user)
+  end
+  
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end

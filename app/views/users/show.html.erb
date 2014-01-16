@@ -3,6 +3,16 @@
 </div>
 <h1><%= @user.username %></h1>
 
+<% if @user != current_user %>
+    <% if current_user.is_following?(@user) %>
+      <%= button_to "unfollow", follow_url(@follow), :method => :delete %>
+    <% else %>
+      <%= form_for @follow, :url => user_follows_url(@user) do |f| %>
+        <%= f.submit "follow" %>
+      <% end %>
+    <% end %>
+<% end %>
+
 <% if @user == current_user %>
 
   <h3>add profile photo</h3>
