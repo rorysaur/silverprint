@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_login, :except => [:new, :create]
   
-  before_filter :only => [:edit, :update, :destroy] do |controller|
+  before_filter :only => [:edit, :update, :destroy, :feed] do |controller|
     controller.authenticate(params[:id])
   end
   
