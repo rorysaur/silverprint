@@ -10,10 +10,10 @@ json.set! :user do
     json.(followee, :id)
   end
   json.photos @user.photos do |photo|
-    json.(photo, :id, :created_at)
+    json.(photo, :id, :user_id, :created_at)
     json.photo_url photo.photo(:normal)
     json.likes photo.likes do |like|
-      json.(like, :id)
+      json.(like, :id, :photo_id, :user_id)
     end
     json.likers photo.likers do |liker|
       json.(liker, :id)

@@ -15,7 +15,7 @@ end
   
 json.set! :feed_photos do
   json.array!(@photos) do |photo|
-    json.(photo, :id, :created_at)
+    json.(photo, :id, :user_id, :created_at)
     json.photo_url photo.photo(:normal)
     json.user do
       json.(photo.user, :id)
