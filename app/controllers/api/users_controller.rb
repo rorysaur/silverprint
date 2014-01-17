@@ -60,7 +60,6 @@ class Api::UsersController < ApplicationController
   def feed
     @user = User.with_feed_data(params[:id])
     @photos = @user.feed_photos
-    @like = Like.new
     
     render "api/users/feed"
   end
