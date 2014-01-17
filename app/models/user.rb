@@ -63,6 +63,29 @@ class User < ActiveRecord::Base
     return user if user && user.is_password?(user_params[:password])
   end
   
+  def self.with_feed_data(id)
+    User.includes(
+          :photos,
+          :likes,
+          :liked_photos,
+          :following => {
+            :photos => :user
+          })
+        .find(id)
+  end
+  
+  def self.with_show_data(id)
+    User.includes({:photos => [:likes, :likers]}, :followers, :following)
+        .find(id)
+  end
+  
+  def feed_photos
+    self.following.map(&:photos)
+                  .flatten
+                  .concat(self.photos)
+                  .sort_by(&:created_at).reverse
+  end
+  
   def is_following?(other_user)
     other_user.followers.include?(self)
   end

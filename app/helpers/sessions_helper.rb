@@ -28,8 +28,16 @@ module SessionsHelper
   def authenticate(id)
     user = User.find(id)
     unless logged_in? && current_user == user
-      flash[:failure] = "You don't have permission to access this page."
-      redirect_to user_url(current_user)
+      respond_to do |format|
+        format.html {
+          flash[:failure] = "You don't have permission to access this page."
+          redirect_to root_url
+        }
+        format.json {
+          render :json => "forbidden", :status => 403
+        }
+      end
     end
   end
+  
 end

@@ -1,12 +1,13 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
   before_filter :require_login, :except => [:new, :create]
   
-  before_filter :only => [:edit, :update, :destroy, :feed] do |controller|
+  before_filter :only => [:update, :destroy, :favorites, :feed] do |controller|
     controller.authenticate(params[:id])
   end
   
   def index
     @users = User.includes(:followers).all
+    render "api/users/index"
   end
   
   def show
@@ -20,57 +21,48 @@ class UsersController < ApplicationController
       @follow = Follow.new
     end
     
-    @like = Like.new
-  end
-  
-  def new
-    @user = User.new
+    render "api/users/show"
   end
   
   def create
     @user = User.new(params[:user])
     
     if @user.save
-      flash[:success] = "Welcome to silverprint!"
       login!(@user)
-      redirect_to user_url(@user)
+      render :json => @user
     else
-      flash[:errors] = @user.errors.full_messages
-      render :new
+      render :json => @user.errors, :status => 422
     end
-  end
-  
-  def edit
-    @user = User.find(params[:id])
   end
   
   def update
     @user = User.find(params[:id])
     
     if @user.update_attributes(params[:user])
-      flash[:success] = "User updated."
-      redirect_to user_url(@user)
+      render :json => @user
     else
-      flash[:errors] = @user.errors.full_messages
-      render :edit
+      render :json => @user.errors, :status => 422
     end
   end
   
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to root_url
+    render :json => @user
   end
   
   def favorites
     @user = User.includes(:likes, :liked_photos => :user).find(params[:id])
     @photos = @user.liked_photos.sort_by(&:created_at).reverse
+    render "api/users/favorites"
   end
   
   def feed
     @user = User.with_feed_data(params[:id])
     @photos = @user.feed_photos
     @like = Like.new
+    
+    render "api/users/feed"
   end
   
 end
