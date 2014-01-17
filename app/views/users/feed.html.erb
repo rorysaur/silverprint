@@ -1,0 +1,15 @@
+<h1>feed</h1>
+
+<% @photos.try(:each) do |photo| %>
+  <div>
+    <div>
+      <%= image_tag photo.user.profile_pic.url(:thumbnail) %>
+      <%= link_to photo.user.username, user_url(photo.user) %>
+    </div>
+    <%= image_tag photo.photo.url(:normal) %>
+    <% if photo.user == current_user %>
+      <%= button_to "Delete", photo_url(photo), :method => :delete %>
+    <% end %>
+  </div>
+  <p></p>
+<% end %>

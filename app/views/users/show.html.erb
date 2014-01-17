@@ -15,7 +15,7 @@
 
 <% if @user == current_user %>
 
-  <h3>add profile photo</h3>
+  <h3>add/change profile photo</h3>
 
   <%= form_for @user do |f| %>
     <%= f.file_field :profile_pic %>
@@ -25,10 +25,10 @@
 <% end %>
 
 <% @user.photos.try(:each) do |photo| %>
-<div>
-  <%= image_tag photo.photo.url(:normal) %>
-  <% if @user == current_user %>
-    <%= button_to "Delete", photo_url(photo), :method => :delete %>
-  <% end %>
-</div>
+  <div>
+    <%= image_tag photo.photo.url(:normal) %>
+    <% if @user == current_user %>
+      <%= button_to "Delete", photo_url(photo), :method => :delete %>
+    <% end %>
+  </div>
 <% end %>

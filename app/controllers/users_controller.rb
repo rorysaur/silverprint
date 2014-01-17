@@ -59,4 +59,13 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to root_url
   end
+  
+  def feed
+    @user = User.includes(:following => :photos).find(params[:id])
+    @photos = @user.following.map(&:photos)
+                   .flatten
+                   .concat(@user.photos)
+                   .sort_by(&:created_at).reverse
+  end
+  
 end
