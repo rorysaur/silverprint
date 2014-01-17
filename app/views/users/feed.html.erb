@@ -5,6 +5,7 @@
     <div>
       <%= image_tag photo.user.profile_pic.url(:thumbnail) %>
       <%= link_to photo.user.username, user_url(photo.user) %>
+      <%= time_ago_in_words(photo.created_at) %> ago
     </div>
     <%= image_tag photo.photo.url(:normal) %>
     <% if @user.likes?(photo) %>

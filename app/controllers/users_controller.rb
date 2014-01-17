@@ -6,12 +6,12 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.all
+    @users = User.includes(:followers).all
   end
   
   def show
     @user = User
-              .includes(:photos, :followers, :following)
+              .includes({:photos => [:likes, :likers]}, :followers, :following)
               .find(params[:id])
               
     @photos = @user.photos.sort_by(&:created_at).reverse
@@ -62,6 +62,11 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
   
+  def favorites
+    @user = User.includes(:likes, :liked_photos => :user).find(params[:id])
+    @photos = @user.liked_photos.sort_by(&:created_at).reverse
+  end
+  
   def feed
     @user = User.includes(
                   :photos,
@@ -70,11 +75,13 @@ class UsersController < ApplicationController
                   :following => {
                     :photos => :user
                   })
-                .find(params[:id])
+                  .find(params[:id])
+                  
     @photos = @user.following.map(&:photos)
                    .flatten
                    .concat(@user.photos)
                    .sort_by(&:created_at).reverse
+                   
     @like = Like.new
   end
   

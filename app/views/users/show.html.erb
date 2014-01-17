@@ -26,9 +26,24 @@
 
 <% @photos.try(:each) do |photo| %>
   <div>
+    <div>
+      <%= image_tag @user.profile_pic.url(:thumbnail) %>
+      <%= link_to @user.username, user_url(@user) %>
+      <%= time_ago_in_words(photo.created_at) %> ago
+    </div>
     <%= image_tag photo.photo.url(:normal) %>
-    <% if @user == current_user %>
+    <% if photo.liked_by?(current_user) %>
+      <% @like = photo.likes.select { |like| like.user_id == current_user.id } %>
+      <%= button_to "unlike", like_url(@like), :method => :delete %>
+    <% else %>
+      <%= form_for @like, :url => photo_likes_url(photo) do |f| %>
+        <%= f.submit "like" %>
+      <% end %>
+    <% end %>
+  
+    <% if photo.user == @user %>
       <%= button_to "delete", photo_url(photo), :method => :delete %>
     <% end %>
   </div>
+  <p></p>
 <% end %>

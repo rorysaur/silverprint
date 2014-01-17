@@ -6,7 +6,7 @@ class Photo < ActiveRecord::Base
   has_attached_file(
     :photo,
     :styles => {
-      :normal => "500x500>",
+      :normal => "400x400#",
       :thumbnail => "50x50#"
     },
     :convert_options => {

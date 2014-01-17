@@ -6,6 +6,7 @@ Silverprint::Application.routes.draw do
     resources :follows, :only => :create
     member do
       get 'feed'
+      get 'favorites'
     end
   end
   

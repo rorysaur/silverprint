@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_attached_file(
     :profile_pic,
     :styles => {
-      :big => "500x500>",
+      :big => "400x400#",
       :thumbnail => "50x50#"
     },
     :convert_options => {
@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   end
   
   def is_following?(other_user)
-    self.following.include?(other_user)
+    other_user.followers.include?(self)
   end
   
   def is_password?(password)
