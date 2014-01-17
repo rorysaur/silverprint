@@ -1,5 +1,5 @@
 Silverprint::Application.routes.draw do
-  root :to => "static_pages#root"
+  root :to => "root#root"
   resource :session, :only => [:new, :create, :destroy]
 
   # api routes

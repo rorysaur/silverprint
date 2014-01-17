@@ -9,6 +9,7 @@ gem 'pg'
 gem 'rails_12factor'
 gem 'newrelic_rpm'
 
+gem 'backbone-on-rails'
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'ejs'
