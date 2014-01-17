@@ -14,6 +14,8 @@ class UsersController < ApplicationController
               .includes(:photos, :followers, :following)
               .find(params[:id])
               
+    @photos = @user.photos.sort_by(&:created_at).reverse
+    
     if current_user.is_following?(@user)
       @follow = current_user.follows_initiated.find_by_followee_id(@user.id)
     else

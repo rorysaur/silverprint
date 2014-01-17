@@ -24,7 +24,7 @@
   
 <% end %>
 
-<% @user.photos.try(:each) do |photo| %>
+<% @photos.try(:each) do |photo| %>
   <div>
     <%= image_tag photo.photo.url(:normal) %>
     <% if @user == current_user %>
