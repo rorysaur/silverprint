@@ -4,14 +4,12 @@ json.set! :user do
   json.(@user, :id, :username)
   json.profile_pic_url @user.profile_pic(:thumbnail)
   
-  json.photos @user.photos do |photo|
-  end
-  
   json.likes @user.likes do |like|
     json.(like, :id, :photo_id, :user_id)
   end
   
   json.liked_photos @user.liked_photos do |liked_photo|
+    json.(liked_photo, :id)
   end
 end
   
