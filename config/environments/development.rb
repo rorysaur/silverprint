@@ -47,5 +47,4 @@ Silverprint::Application.configure do
     }
   }
   
-  Jbuilder.key_format(:camelize => :lower)
 end

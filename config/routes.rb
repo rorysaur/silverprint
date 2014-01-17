@@ -3,7 +3,7 @@ Silverprint::Application.routes.draw do
   resource :session, :only => [:new, :create, :destroy]
 
   # api routes
-  namespace :api do  
+  namespace :api, :defaults => { :format => :json } do
     resources :users, :except => [:new, :edit] do
       resources :photos, :only => :index
       resources :follows, :only => :create
