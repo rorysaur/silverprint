@@ -10,6 +10,11 @@ Silverprint::Application.routes.draw do
   end
   
   resource :session, :only => [:new, :create, :destroy]
-  resources :photos, :only => [:new, :create, :destroy]
-  resources :follows, :only => [:destroy]
+  
+  resources :photos, :only => [:new, :create, :destroy] do
+    resources :likes, :only => :create
+  end
+  
+  resources :follows, :only => :destroy
+  resources :likes, :only => :destroy
 end

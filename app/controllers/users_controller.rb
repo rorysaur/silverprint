@@ -63,11 +63,19 @@ class UsersController < ApplicationController
   end
   
   def feed
-    @user = User.includes(:following => :photos).find(params[:id])
+    @user = User.includes(
+                  :photos,
+                  :likes,
+                  :liked_photos,
+                  :following => {
+                    :photos => :user
+                  })
+                .find(params[:id])
     @photos = @user.following.map(&:photos)
                    .flatten
                    .concat(@user.photos)
                    .sort_by(&:created_at).reverse
+    @like = Like.new
   end
   
 end

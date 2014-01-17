@@ -7,8 +7,17 @@
       <%= link_to photo.user.username, user_url(photo.user) %>
     </div>
     <%= image_tag photo.photo.url(:normal) %>
-    <% if photo.user == current_user %>
-      <%= button_to "Delete", photo_url(photo), :method => :delete %>
+    <% if @user.likes?(photo) %>
+      <% @like = @user.likes.select { |like| like.photo_id == photo.id } %>
+      <%= button_to "unlike", like_url(@like), :method => :delete %>
+    <% else %>
+      <%= form_for @like, :url => photo_likes_url(photo) do |f| %>
+        <%= f.submit "like" %>
+      <% end %>
+    <% end %>
+    
+    <% if photo.user == @user %>
+      <%= button_to "delete", photo_url(photo), :method => :delete %>
     <% end %>
   </div>
   <p></p>

@@ -28,7 +28,7 @@
   <div>
     <%= image_tag photo.photo.url(:normal) %>
     <% if @user == current_user %>
-      <%= button_to "Delete", photo_url(photo), :method => :delete %>
+      <%= button_to "delete", photo_url(photo), :method => :delete %>
     <% end %>
   </div>
 <% end %>

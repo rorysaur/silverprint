@@ -3,8 +3,6 @@ class Photo < ActiveRecord::Base
   
   validates :user, :photo, :presence => true
   
-  belongs_to :user
-  
   has_attached_file(
     :photo,
     :styles => {
@@ -15,4 +13,19 @@ class Photo < ActiveRecord::Base
       :all => "-colorspace Gray"
     }
   )
+  
+  belongs_to :user
+  
+  has_many :likes
+  
+  has_many(
+    :likers,
+    :through => :likes,
+    :source => :user
+  )
+  
+  def liked_by?(user)
+    self.likers.include?(user)
+  end
+  
 end

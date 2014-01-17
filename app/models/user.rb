@@ -50,6 +50,14 @@ class User < ActiveRecord::Base
     :source => :followee
   )
   
+  has_many :likes
+  
+  has_many(
+    :liked_photos,
+    :through => :likes,
+    :source => :photo
+  )
+  
   def self.find_by_credentials(user_params)
     user = User.find_by_username(user_params[:username])
     return user if user && user.is_password?(user_params[:password])
@@ -61,6 +69,10 @@ class User < ActiveRecord::Base
   
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
+  end
+  
+  def likes?(photo)
+    self.liked_photos.include?(photo)
   end
   
   def password=(password)
