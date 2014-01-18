@@ -17,12 +17,13 @@ Silverprint.Views.UsersIndex = Backbone.View.extend({
     
     view.$el.html(renderedContent);
 
-    // view.collection.each(function (user) {
-//       var userView = new Silverprint.Views.UserRow({
-//         model: user
-//       });
-//       view.$("table").append(userView.render().$el);
-//     });
+    view.collection.each(function (user) {
+      console.log(user);
+      var userView = new Silverprint.Views.UserRow({
+        model: user
+      });
+      view.$("table").append(userView.render().$el);
+    });
     
     return view;
   },
