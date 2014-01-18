@@ -18,9 +18,7 @@ class UsersController < ApplicationController
       @follow = current_user.follows_initiated.find_by_followee_id(@user.id)
     else
       @follow = Follow.new
-    end
-    
-    @like = Like.new
+    end    
   end
   
   def new
@@ -70,7 +68,6 @@ class UsersController < ApplicationController
   def feed
     @user = User.with_feed_data(params[:id])
     @photos = @user.feed_photos
-    @like = Like.new
   end
   
 end

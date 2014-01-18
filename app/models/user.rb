@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
           :likes,
           :liked_photos,
           :following => {
-            :photos => :user
+            :photos => [:user, :likers]
           })
         .find(id)
   end

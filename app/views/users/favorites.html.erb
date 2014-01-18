@@ -8,6 +8,9 @@
       <%= time_ago_in_words(photo.created_at) %>
     </div>
     <%= image_tag photo.photo.url(:normal) %>
+    <div>
+      liked by: <%= photo.likers.map(&:username).join(", ") %>
+    </div>
     <% @like = @user.likes.select { |like| like.photo_id == photo.id } %>
     <%= button_to "unlike", like_url(@like), :method => :delete %>
     

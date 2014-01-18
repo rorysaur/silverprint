@@ -21,5 +21,8 @@ json.set! :feed_photos do
       json.(photo.user, :id)
       json.profile_pic_url photo.user.profile_pic(:thumbnail)
     end
+    json.likers photo.likers do |liker|
+      json.(liker, :id, :username)
+    end
   end
 end

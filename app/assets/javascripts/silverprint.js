@@ -8,6 +8,4 @@ window.Silverprint = {
   }
 };
 
-$(document).ready(function(){
-  Silverprint.initialize();
-});
+

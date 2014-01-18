@@ -16,7 +16,7 @@ json.set! :user do
       json.(like, :id, :photo_id, :user_id)
     end
     json.likers photo.likers do |liker|
-      json.(liker, :id)
+      json.(liker, :id, :username)
     end
   end
 end
