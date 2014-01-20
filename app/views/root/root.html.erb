@@ -1,8 +1,10 @@
 <div id="content">
+  BACKBONE!
 </div>
 
 <script>
   $(document).ready(function(){
-    Silverprint.initialize();
+    console.log("root");
+    Silverprint.initialize(<%= current_user.id %>);
   });
 </script>

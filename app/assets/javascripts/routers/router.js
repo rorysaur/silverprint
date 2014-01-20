@@ -36,11 +36,35 @@ Silverprint.Routers.Router = Backbone.Router.extend({
   },
   
   userShow: function (id) {
-    
+    var router = this;
+    router._getUser(id, function (user) {
+      var showView = new Silverprint.Views.UserShow({
+        model: user
+      });
+
+      router._swapView(showView);
+    });
   },
   
-  _getUser: function (id) {
+  _getUser: function (id, callback) {
+    var user = Silverprint.users.get(id);
     
+    if (!user) {
+      user = new Silverprint.Models.User({ id: id });
+      user.collection = Silverprint.users;
+      user.fetch({
+        success: function () {
+          Silverprint.users.add(user);
+          callback(user);
+        }
+      });
+    } else {
+      user.fetch({
+        success: function () {
+          callback(user);
+        }
+      });
+    }
   },
   
   _swapView: function (view) {
