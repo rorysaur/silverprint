@@ -9,6 +9,7 @@ window.Silverprint = {
       success: function (users) {
         console.log(users);
         Silverprint.currentUser = Silverprint.users.get(currentUserId);
+        // Silverprint.eventListener = _.extend({}, BackboneEvents);
         Silverprint.router = new Silverprint.Routers.Router({
           $rootEl: $('#content'),
           collection: Silverprint.users

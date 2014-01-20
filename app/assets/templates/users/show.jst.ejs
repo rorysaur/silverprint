@@ -6,7 +6,7 @@
   <div id="follow">
     <% if (user.isFollowedBy(currentUser)) { %>
       <button class="unfollow">unfollow</button>
-    <% } else { %>
+    <% } else if (user != currentUser) { %>
       <button class="follow">follow</button>
     <% } %>
   </div>
