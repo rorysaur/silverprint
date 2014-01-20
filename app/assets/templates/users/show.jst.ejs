@@ -3,6 +3,13 @@
     <%= view.imageTag(user.get('profilePicUrl')) %>
   </div>
   <h1><%= user.get('username') %></h1>
+  <div id="follow">
+    <% if (user.isFollowedBy(currentUser)) { %>
+      <button class="unfollow">unfollow</button>
+    <% } else { %>
+      <button class="follow">follow</button>
+    <% } %>
+  </div>
 
   <div id="photos">
   
