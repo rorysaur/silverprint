@@ -2,6 +2,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   
   initialize: function () {
     this.photos = this.model.get("photos");
+    this.listenTo(this.photos, "all", this.render);
   },
   
   events: {},

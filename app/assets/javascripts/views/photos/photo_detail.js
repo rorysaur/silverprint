@@ -4,7 +4,15 @@ Silverprint.Views.PhotoDetail = Backbone.View.extend({
     this.user = options.user;
   },
   
-  events: {},
+  events: {
+    "click .delete": "delete"
+  },
+  
+  delete: function (event) {
+    event.preventDefault();
+    // var photoId = parseInt(event.currentTarget.attr("data-id"));
+    this.model.destroy();
+  },
   
   render: function () {
     var view = this;
