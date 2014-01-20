@@ -1,5 +1,9 @@
 Silverprint.Views.PhotoDetail = Backbone.View.extend({
   
+  initialize: function (options) {
+    this.user = options.user;
+  },
+  
   events: {},
   
   render: function () {
@@ -7,6 +11,7 @@ Silverprint.Views.PhotoDetail = Backbone.View.extend({
     
     var renderedContent = view.template({
       photo: view.model,
+      user: view.user,
       view: view,
       currentUser: Silverprint.currentUser
     });
@@ -16,4 +21,5 @@ Silverprint.Views.PhotoDetail = Backbone.View.extend({
   },
   
   template: JST["photos/detail"]
+  
 });

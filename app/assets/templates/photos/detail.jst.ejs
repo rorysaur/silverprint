@@ -1,8 +1,18 @@
 <div>
   <%= view.imageTag(user.get("profilePicUrl")) %>
-  <%= view.linkTo(user.get("username"), "#") %>
-  <%= $.timeago(created_at) %>
+  <%= view.linkTo(user.escape("username"), "#") %>
+  <%= $.timeago(photo.get("createdAt")) %>
 </div>
-
-
-
+<div>
+  <%= view.imageTag(photo.get("photoUrl")) %>
+</div>
+<div>
+  <% var getUsername = function (obj) { return obj.username } %>
+  liked by: <%= photo.get("likers").map(getUsername).join(", ") %>
+</div>
+<div>
+  <% if (photo.get("userId") == currentUser.id) { %>
+    <button class="delete" data-id="<%= photo.id %>">delete</button>
+  <% } %>
+</div>
+<p></p>

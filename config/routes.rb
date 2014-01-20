@@ -13,7 +13,7 @@ Silverprint::Application.routes.draw do
       end
     end
   
-    resources :photos, :only => [:create, :destroy] do
+    resources :photos, :only => [:show, :create, :destroy] do
       resources :likes, :only => :create
     end
   

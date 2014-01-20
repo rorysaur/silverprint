@@ -1,5 +1,9 @@
 Silverprint.Views.UserShow = Backbone.View.extend({
   
+  initialize: function () {
+    this.photos = this.model.get("photos");
+  },
+  
   events: {},
   
   render: function () {
@@ -13,12 +17,13 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     
     view.$el.html(renderedContent);
     
-    // view.user.get('photos').each(function (photo) {
-    //   var photoView = new Silverprint.Views.PhotoDetail({
-    //     model: photo
-    //   });
-    //   view.$('#photos').append(photoView);
-    // });
+    view.photos.each(function (photo, index) {
+      var photoView = new Silverprint.Views.PhotoDetail({
+        model: photo,
+        user: view.model
+      });
+      view.$('#photos').append(photoView.render().$el);
+    });
     
     return view;
   },

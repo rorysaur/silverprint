@@ -10,6 +10,11 @@ class Api::PhotosController < ApplicationController
     render "api/photos/index"
   end
   
+  def show
+    @photo = Photo.find(params[:id])
+    render "api/photos/show"
+  end
+  
   def create
     @photo = Photo.new(params[:photo])
     @photo.user = current_user
