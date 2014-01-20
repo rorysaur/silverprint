@@ -1,0 +1,8 @@
+<div>
+  <%= view.imageTag(user.get("profilePicUrl")) %>
+  <%= view.linkTo(user.get("username"), "#") %>
+  <%= $.timeago(created_at) %>
+</div>
+
+
+

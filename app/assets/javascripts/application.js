@@ -22,3 +22,4 @@
 //= require_tree ./routers
 //= require_tree .
 //= require bootstrap
+//= require jquery.timeago

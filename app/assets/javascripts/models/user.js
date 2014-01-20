@@ -5,7 +5,6 @@ Silverprint.Models.User = Backbone.Model.extend({
     data.photos = new Silverprint.Collections.UserPhotos(photos, {
       userId: data.id
     });
-    console.log(data);
     return data;
   },
   
@@ -13,7 +12,7 @@ Silverprint.Models.User = Backbone.Model.extend({
     var data = _.clone(this.attributes);
     data.photos = this.get('photos').toJSON();
     return data;
-  }
+  },
   
   validate: function (attrs) {  }
 });
