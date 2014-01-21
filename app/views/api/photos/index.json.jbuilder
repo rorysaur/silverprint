@@ -1,4 +1,6 @@
 json.photos @photos do |photo|
   json.(photo, :id, :user_id, :created_at)
-  json.photo_url photo.photo(:normal)
+  json.photo_url photo.photo(:vertical)
+  json.photo_grid_url photo.photo(:grid)
+  json.photo_large_url photo.photo(:large)
 end

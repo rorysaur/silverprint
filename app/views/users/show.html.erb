@@ -31,7 +31,7 @@
       <%= link_to @user.username, user_url(@user) %>
       <%= time_ago_in_words(photo.created_at) %> ago
     </div>
-    <%= image_tag photo.photo.url(:normal) %>
+    <%= image_tag photo.photo.url(:vertical) %>
     <div>
       liked by: <%= photo.likers.map(&:username).join(", ") %>
     </div>

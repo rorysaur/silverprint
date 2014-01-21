@@ -24,7 +24,7 @@
 
 [x] recursive view removal
 
-[ ] grid view
+[x] grid view
 
 [ ] lightbox view
 

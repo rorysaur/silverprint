@@ -7,7 +7,7 @@ class Photo < ActiveRecord::Base
     :photo,
     :styles => {
       :large => "500x500#",
-      :normal => "400x400#",
+      :vertical => "400x400#",
       :grid => "300x300#",
       :thumbnail => "50x50#"
     },

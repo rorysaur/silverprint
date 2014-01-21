@@ -11,8 +11,9 @@ end
 json.set! :photos do
   json.array!(@photos) do |photo|
     json.(photo, :id, :user_id, :created_at)
-    json.photo_url photo.photo(:normal)
+    json.photo_url photo.photo(:vertical)
     json.photo_grid_url photo.photo(:grid)
+    json.photo_large_url photo.photo(:large)
     json.user do
       json.(photo.user, :id, :username)
       json.profile_pic_url photo.user.profile_pic(:thumbnail)

@@ -4,7 +4,7 @@
   <%= view.linkTo(userAttrs.username, "#users/" + userAttrs.id) %>
   <%= $.timeago(photo.get("createdAt")) %>
 </div>
-<div>
+<div class="photo" data-id="<%= photo.id %>">
   <%= view.imageTag(photo.get("photoUrl")) %>
 </div>
 <div>

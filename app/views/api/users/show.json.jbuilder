@@ -11,8 +11,9 @@ json.following @user.following do |followee|
 end
 json.photos @user.photos do |photo|
   json.(photo, :id, :user_id, :created_at)
-  json.photo_url photo.photo(:normal)
+  json.photo_url photo.photo(:vertical)
   json.photo_grid_url photo.photo(:grid)
+  json.photo_large_url photo.photo(:large)
   json.likes photo.likes do |like|
     json.(like, :id, :photo_id, :user_id)
   end
