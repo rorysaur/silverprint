@@ -1,11 +1,11 @@
-Silverprint.Views.PhotoForm = Backbone.View.extend({
-  
+Silverprint.Views.ProfilePicForm = Backbone.View.extend({
+
   attributes: {
     "enctype" : "multipart/form-data"
   },
   
   events: {
-    "submit form" : "submit",
+    "submit" : "submit",
     "change input[type=file]" : "encodeFile"
   },
   
@@ -19,7 +19,7 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     var reader = new FileReader();
     reader.onload = function (e) {
       console.log(e.target.result);
-      view.model.set({ photo: e.target.result });
+      view.model.set({ profile_pic: e.target.result });
     }
     
     reader.onerror = function(error) {
@@ -34,7 +34,7 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     var view = this;
     
     var renderedContent = view.template({
-      model: view.model
+      model: view.model,
     });
     
     view.$el.html(renderedContent);
@@ -42,10 +42,13 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
   },
   
   submit: function (event) {
+    var view = this;
     event.preventDefault();
-    this.model.save({}, {
-      success: function () {
-        Backbone.history.navigate("#/");
+    
+    view.model.save({}, {
+      success: function (model, response) {
+        Silverprint.currentUser.set({ profilePicUrl: response.profilePicUrl });
+        Silverprint.currentUser.trigger("newProfilePic");
       },
       
       error: function (xhr) {
@@ -56,5 +59,6 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
   
   tagName: "form",
   
-  template: JST["photos/form"]
+  template: JST["photos/profile"]
+  
 });

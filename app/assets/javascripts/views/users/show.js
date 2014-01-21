@@ -4,13 +4,15 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     this.photos = this.model.get("photos");
     this.listenTo(this.photos, "all", this.render);
     this.listenTo(this.model, "follow unfollow", this.render);
+    this.listenTo(Silverprint.currentUser, "newProfilePic", this.render);
   },
   
   events: {
-    "click .follow": "follow",
-    "click .unfollow": "unfollow"
+    "click a#change-profile-pic" : "showProfilePicForm",   
+    "click .follow" : "follow",
+    "click .unfollow" : "unfollow"
   },
-  
+    
   follow: function (event) {
     var view = this;
     event.preventDefault();
@@ -50,6 +52,16 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     });
     
     return view;
+  },
+  
+  showProfilePicForm: function (event) {
+    event.preventDefault();
+    
+    var formView = new Silverprint.Views.ProfilePicForm({
+      model: this.model
+    });
+    
+    this.$("#profile-pic").html(formView.render().$el);
   },
   
   template: JST["users/show"],

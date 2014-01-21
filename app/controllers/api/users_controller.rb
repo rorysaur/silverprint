@@ -39,7 +39,16 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:id])
     
     if @user.update_attributes(params[:user])
-      render :json => @user
+      @user = User.with_show_data(params[:id])
+      @photos = @user.photos.sort_by(&:created_at).reverse
+    
+      if current_user.is_following?(@user)
+        @follow = current_user.follows_initiated.find_by_followee_id(@user.id)
+      else
+        @follow = Follow.new
+      end
+      
+      render "api/users/show"
     else
       render :json => @user.errors, :status => 422
     end
