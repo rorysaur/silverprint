@@ -26,7 +26,7 @@
 
 [x] grid view
 
-[ ] lightbox view
+[x] lightbox view
 
 [ ] square crop
 

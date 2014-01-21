@@ -20,6 +20,8 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     reader.onload = function (e) {
       console.log(e.target.result);
       view.model.set({ photo: e.target.result });
+      view.$("#preview").attr("src", e.target.result);
+      view.$("#preview").show();
     }
     
     reader.onerror = function(error) {
@@ -38,6 +40,7 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     });
     
     view.$el.html(renderedContent);
+    view.$("#preview").hide();
     return view;
   },
   
