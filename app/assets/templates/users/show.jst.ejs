@@ -11,17 +11,17 @@
       <button class="follow">follow</button>
     <% } %>
   </div>
-  
-  <% if (user.id == currentUser.id) { %>
-    <%= view.linkTo(
-              "change profile photo",
-              "#",
-              { id: "change-profile-pic" }) %>
-              
-    <div id="profile-pic">
-    </div>  
-  <% } %>
 </div>
+  
+<% if (user.id == currentUser.id) { %>
+  <%= view.linkTo(
+            "change profile photo",
+            "#",
+            { id: "change-profile-pic" }) %>
+            
+  <div id="profile-pic">
+  </div>  
+<% } %>
 
 <button id="grid">
   <%= view.mode === "vertical" ? "grid" : "vertical" %>
