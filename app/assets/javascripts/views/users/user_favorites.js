@@ -2,6 +2,7 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
   
   initialize: function () {
     this.listenTo(Silverprint.currentUser, "unlike", this.removePhoto);
+    this.listenTo(this.collection, "all", this.render);
   },
   
   events: {},

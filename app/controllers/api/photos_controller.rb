@@ -1,4 +1,6 @@
 class Api::PhotosController < ApplicationController
+  # wrap_parameters
+  
   before_filter :require_login
   before_filter :only => [:destroy] do |controller|
     @photo = Photo.find(params[:id])

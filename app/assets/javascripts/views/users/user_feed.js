@@ -1,5 +1,9 @@
 Silverprint.Views.UserFeed = Backbone.View.extend({
   
+  initialize: function () {
+    this.listenTo(this.collection, "all", this.render)
+  },
+  
   events: {
     
   },

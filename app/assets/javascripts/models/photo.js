@@ -8,5 +8,10 @@ Silverprint.Models.Photo = Backbone.Model.extend({
     });
     
     return !notLiked;
+  },
+  
+  toJSON: function () {
+    var attrs = _.clone(this.attributes);
+    return { photo: attrs };
   }
 });

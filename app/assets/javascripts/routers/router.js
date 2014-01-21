@@ -44,7 +44,14 @@ Silverprint.Routers.Router = Backbone.Router.extend({
   },
   
   photoNew: function () {
+    var router = this;
+    var photo = new Silverprint.Models.Photo();
     
+    var photoFormView = new Silverprint.Views.PhotoForm({
+      model: photo
+    });
+    
+    router._swapView(photoFormView);
   },
   
   usersIndex: function () {
