@@ -1,18 +1,20 @@
 Silverprint.Views.UserFeed = Backbone.View.extend({
   
   initialize: function () {
+    this.mode = "grid";
     this.childViews = [];
     this.listenTo(this.collection, "all", this.render)
   },
   
   events: {
-    
+    "click #grid" : "toggleGrid"
   },
   
   removeChildViews: function () {
     _(this.childViews).each(function (childView, index) {
       console.log("removing child #" + index + "...");
       childView.remove();
+      childView.childViews && childView.removeChildViews();
     });
   },
   
@@ -25,19 +27,30 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
     });
     
     view.$el.html(renderedContent);
-
-    view.collection.each(function (photo) {
-      var photoView = new Silverprint.Views.PhotoDetail({
-        model: photo,
-        userAttrs: photo.get("user"),
+    
+    if (view.mode === "vertical") {
+      var verticalView = new Silverprint.Views.Vertical({
+        collection: view.collection,
+        page: "feed"
       });
       
-      view.childViews.push(photoView);
-      view.$("#photos").append(photoView.render().$el);
-    });
+      view.$("#photos").html(verticalView.render().$el);
+      
+    } else if (view.mode === "grid") {
+      var gridView = new Silverprint.Views.Grid({
+        collection: view.collection
+      });
+      
+      view.$("#photos").html(gridView.render().$el);
+    }
     
     return view;
   },
   
-  template: JST["users/feed"]
+  template: JST["users/feed"],
+  
+  toggleGrid: function () {
+    this.mode = (this.mode === "vertical") ? "grid" : "vertical";
+    this.render();
+  }
 });

@@ -1,7 +1,8 @@
 Silverprint.Views.Vertical = Backbone.View.extend({
   
-  initialize: function () {
+  initialize: function (options) {
     this.childViews = [];
+    this.page = options.page;
   },
     
   attributes: {
@@ -21,9 +22,15 @@ Silverprint.Views.Vertical = Backbone.View.extend({
     var view = this;
     
     view.collection.each(function (photo, index) {
+      if (view.page === "show") {
+        var userAttrs = view.model.attributes;
+      } else {
+        var userAttrs = photo.get("user");
+      }
+
       var photoView = new Silverprint.Views.PhotoDetail({
         model: photo,
-        userAttrs: view.model.attributes
+        userAttrs: userAttrs
       });
       
       view.childViews.push(photoView);

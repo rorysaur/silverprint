@@ -22,7 +22,7 @@ Silverprint.Views.Grid = Backbone.View.extend({
         
     view.collection.each(function (photo) {
       var photoView = new Silverprint.Views.GridDetail({
-        model: photo
+        model: photo,
       });
       
       view.childViews.push(photo);

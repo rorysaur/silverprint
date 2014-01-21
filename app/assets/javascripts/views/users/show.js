@@ -2,7 +2,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   
   initialize: function () {
     this.childViews = [];
-    this.mode = "vertical";
+    this.mode = "grid";
     this.photos = this.model.get("photos");
     this.listenTo(this.photos, "all", this.render);
     this.listenTo(this.model, "follow unfollow", this.render);
@@ -57,7 +57,8 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     if (view.mode === "vertical") {
       var verticalView = new Silverprint.Views.Vertical({
         model: view.model,
-        collection: view.photos
+        collection: view.photos,
+        page: "show"
       });
       
       view.$("#photos").html(verticalView.render().$el);
