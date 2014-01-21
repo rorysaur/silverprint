@@ -34,6 +34,7 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
         page: "feed"
       });
       
+      view.childViews.push(verticalView);
       view.$("#photos").html(verticalView.render().$el);
       
     } else if (view.mode === "grid") {
@@ -41,6 +42,7 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
         collection: view.collection
       });
       
+      view.childViews.push(gridView);
       view.$("#photos").html(gridView.render().$el);
     }
     

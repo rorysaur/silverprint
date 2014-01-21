@@ -61,6 +61,8 @@ Silverprint.Views.UserShow = Backbone.View.extend({
         page: "show"
       });
       
+      view.childViews.push(verticalView);
+      console.log(view.childViews);
       view.$("#photos").html(verticalView.render().$el);
       
     } else if (view.mode === "grid") {
@@ -68,6 +70,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
         collection: view.photos
       });
       
+      view.childViews.push(gridView);
       view.$("#photos").html(gridView.render().$el);
     }
     
