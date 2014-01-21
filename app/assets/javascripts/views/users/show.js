@@ -2,6 +2,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   
   initialize: function () {
     this.childViews = [];
+    this.mode = "vertical";
     this.photos = this.model.get("photos");
     this.listenTo(this.photos, "all", this.render);
     this.listenTo(this.model, "follow unfollow", this.render);
@@ -11,7 +12,8 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   events: {
     "click a#change-profile-pic" : "showProfilePicForm",   
     "click .follow" : "follow",
-    "click .unfollow" : "unfollow"
+    "click .unfollow" : "unfollow",
+    "click #grid" : "toggleGrid"
   },
     
   follow: function (event) {
@@ -36,6 +38,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     _(this.childViews).each(function (childView, index) {
       console.log("removing child #" + index + "...");
       childView.remove();
+      childView.childViews && childView.removeChildViews();
     });
   },
   
@@ -51,15 +54,21 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     
     view.$el.html(renderedContent);
     
-    view.photos.each(function (photo, index) {
-      var photoView = new Silverprint.Views.PhotoDetail({
-        model: photo,
-        userAttrs: view.model.attributes
+    if (view.mode === "vertical") {
+      var verticalView = new Silverprint.Views.Vertical({
+        model: view.model,
+        collection: view.photos
       });
       
-      view.childViews.push(photoView);
-      view.$('#photos').append(photoView.render().$el);
-    });
+      view.$("#photos").html(verticalView.render().$el);
+      
+    } else if (view.mode === "grid") {
+      var gridView = new Silverprint.Views.Grid({
+        collection: view.photos
+      });
+      
+      view.$("#photos").html(gridView.render().$el);
+    }
     
     return view;
   },
@@ -77,6 +86,11 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   },
   
   template: JST["users/show"],
+  
+  toggleGrid: function () {
+    this.mode = (this.mode === "vertical") ? "grid" : "vertical";
+    this.render();
+  },
   
   unfollow: function (event) {
     var view = this;

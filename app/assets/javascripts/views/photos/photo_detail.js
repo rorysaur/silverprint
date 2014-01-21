@@ -4,7 +4,7 @@ Silverprint.Views.PhotoDetail = Backbone.View.extend({
     this.userAttrs = options.userAttrs;
     this.listenTo(this.model, "like unlike", this.render)
   },
-  
+    
   events: {
     "click .delete": "delete",
     "click .like": "like",
