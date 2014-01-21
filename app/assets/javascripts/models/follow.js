@@ -1,7 +1,8 @@
 Silverprint.Models.Follow = Backbone.Model.extend({
   
-  initialize: function (followedId) {
-    this.followedUserId = followedId;
+  initialize: function (options) {
+    this.set({ id: options.id });
+    this.followedUserId = options.followedId;
   },
   
   // for follows#create

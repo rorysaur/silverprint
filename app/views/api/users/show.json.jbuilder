@@ -18,6 +18,7 @@ json.photos @user.photos do |photo|
     json.(liker, :id, :username)
   end
 end
-
-
+json.follow do
+  json.(@follow, :id)
+end
   
