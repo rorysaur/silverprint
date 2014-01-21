@@ -22,7 +22,7 @@ Silverprint.Routers.Router = Backbone.Router.extend({
     
     feedPhotos.fetch({
       success: function (photos) {
-        var feedView = new Silverprint.Views.PhotosFeed({
+        var feedView = new Silverprint.Views.UserFeed({
           collection: photos
         });
         

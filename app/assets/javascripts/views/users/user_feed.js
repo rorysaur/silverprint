@@ -1,4 +1,4 @@
-Silverprint.Views.PhotosFeed = Backbone.View.extend({
+Silverprint.Views.UserFeed = Backbone.View.extend({
   
   events: {
     
@@ -17,9 +17,7 @@ Silverprint.Views.PhotosFeed = Backbone.View.extend({
     view.collection.each(function (photo) {
       var photoView = new Silverprint.Views.PhotoDetail({
         model: photo,
-        currentUser: Silverprint.currentUser,
         userAttrs: photo.get("user"),
-        view: view
       });
       
       view.$("#photos").append(photoView.render().$el);

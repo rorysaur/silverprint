@@ -41,7 +41,6 @@ Silverprint.Views.PhotoDetail = Backbone.View.extend({
   },
     
   render: function () {
-    console.log("rendering");
     var view = this;
     
     var renderedContent = view.template({
@@ -60,7 +59,6 @@ Silverprint.Views.PhotoDetail = Backbone.View.extend({
   unlike: function (event) {
     event.preventDefault();
     var view = this;
-    console.log(view.model);
     var likeAttrs = view.model.get("likes").filter(function (like) {
       return like.userId == Silverprint.currentUser.id;
     })[0];
