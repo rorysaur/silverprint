@@ -44,7 +44,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     view.photos.each(function (photo, index) {
       var photoView = new Silverprint.Views.PhotoDetail({
         model: photo,
-        user: view.model
+        userAttrs: view.model.attributes
       });
       view.$('#photos').append(photoView.render().$el);
     });

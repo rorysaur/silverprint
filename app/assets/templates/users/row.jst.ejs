@@ -3,7 +3,7 @@
   <%= view.linkTo(user.get('username'), "#users/" + user.id) %>
   <% if (user.isFollowedBy(Silverprint.currentUser)) { %>
     <button class="unfollow">unfollow</button>
-  <% } else if (user != Silverprint.currentUser) { %>
+  <% } else if (user.id != Silverprint.currentUser.id) { %>
     <button class="follow">follow</button>
   <% } %>
 </td>

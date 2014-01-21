@@ -7,7 +7,7 @@ class Api::FollowsController < ApplicationController
     @follow.followee_id = params[:user_id]
     
     if current_user.id == @follow.followee_id
-      render :json => "cannot follow self", :status => 422
+      render :json => "cannot follow self", :status => 422 and return
     end
     
     if @follow.save

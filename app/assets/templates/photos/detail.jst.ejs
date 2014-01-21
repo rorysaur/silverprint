@@ -1,7 +1,7 @@
 <p></p>
 <div>
-  <%= view.imageTag(user.get("profilePicUrl")) %>
-  <%= view.linkTo(user.escape("username"), "#") %>
+  <%= view.imageTag(userAttrs.profilePicUrl) %>
+  <%= view.linkTo(userAttrs.username, "#users/" + userAttrs.id) %>
   <%= $.timeago(photo.get("createdAt")) %>
 </div>
 <div>

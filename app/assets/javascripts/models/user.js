@@ -1,5 +1,5 @@
 Silverprint.Models.User = Backbone.Model.extend({
-  
+    
   isFollowedBy: function (otherUser) {
     var notFollowed = this.get("followers").every(function (follower) {
       return follower.id != otherUser.id;
@@ -22,5 +22,7 @@ Silverprint.Models.User = Backbone.Model.extend({
     return data;
   },
   
-  validate: function (attrs) {  }
+  validate: function (attrs) {  },
+  
+  urlRoot: "/api/users"
 });
