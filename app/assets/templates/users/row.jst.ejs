@@ -1,5 +1,9 @@
 <td>
   <%= view.imageTag(user.get('profilePicUrl')) %>
-  <%= view.linkTo(user.get('username'), "#") %>
-  <!-- following -->
+  <%= view.linkTo(user.get('username'), "#users/" + user.id) %>
+  <% if (user.isFollowedBy(Silverprint.currentUser)) { %>
+    <button class="unfollow">unfollow</button>
+  <% } else if (user != Silverprint.currentUser) { %>
+    <button class="follow">follow</button>
+  <% } %>
 </td>

@@ -5,7 +5,26 @@ Silverprint.Views.UserRow = Backbone.View.extend({
   },
   
   events: {
+    "click .follow": "follow",
+    "click .unfollow": "unfollow"
+  },
+  
+  follow: function (event) {
+    var view = this;
+    event.preventDefault();
+    var follow = new Silverprint.Models.Follow({
+      followedId: view.model.id
+    });
     
+    follow.save({}, {
+      success: function () {
+        view.model.fetch({
+          success: function () {
+            view.model.trigger("follow");
+          }
+        });
+      }
+    });
   },
   
   render: function () {
@@ -22,5 +41,24 @@ Silverprint.Views.UserRow = Backbone.View.extend({
   
   tagName: "tr",
   
-  template: JST["users/row"]
+  template: JST["users/row"],
+  
+  unfollow: function (event) {
+    var view = this;
+    event.preventDefault();
+    var follow = new Silverprint.Models.Follow(view.model.get("follow"));
+    follow.urlRoot = "/api/follows";
+    console.log(follow);
+    if (follow) {
+      follow.destroy({
+        success: function () {
+          view.model.fetch({
+            success: function () {
+              view.model.trigger("unfollow");
+            }
+          });
+        }
+      });
+    }
+  }
 });
