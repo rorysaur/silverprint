@@ -28,6 +28,7 @@ Silverprint.Views.PhotoDetail = Backbone.View.extend({
       success: function () {
         view.model.fetch({
           success: function () {
+            console.log(view.model);
             view.model.trigger("like");
           }
         });
@@ -57,7 +58,29 @@ Silverprint.Views.PhotoDetail = Backbone.View.extend({
   template: JST["photos/detail"],
   
   unlike: function (event) {
+    event.preventDefault();
+    var view = this;
+    console.log(view.model);
+    var likeAttrs = view.model.get("likes").filter(function (like) {
+      return like.userId == Silverprint.currentUser.id;
+    })[0];
     
+    var like = new Silverprint.Models.Like(likeAttrs);
+    like.urlRoot = "/api/likes";
+    
+    like.destroy({
+      success: function () {
+        view.model.fetch({
+          success: function () {
+            view.model.trigger("unlike");
+          }
+        });
+      },
+      
+      error: function (xhr) {
+        console.log(xhr);
+      }
+    });
   }
   
 });

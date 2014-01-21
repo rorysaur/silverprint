@@ -6,6 +6,9 @@ json.user do
   json.(@photo.user, :id, :username)
   json.profile_pic_url @photo.user.profile_pic(:thumbnail)
 end
+json.likes @photo.likes do |like|
+  json.(like, :id, :user_id)
+end
 json.likers @photo.likers do |liker|
   json.(liker, :id, :username)
 end
