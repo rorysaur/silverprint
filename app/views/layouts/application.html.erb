@@ -15,7 +15,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<%= root_url %>">silverprint</a>
+      <a class="navbar-brand" href="#">silverprint</a>
     </div>
 
     <div class="collapse navbar-collapse" id="main-navbar">
@@ -29,7 +29,9 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-          <li><%= link_to current_user.username, user_url(current_user) %></li>
+          <li>
+            <%= link_to current_user.username, "#users/#{current_user.id}" %>
+          </li>
           <li><%= link_to "Log out", session_url, :method => :delete %></li>
         <% else %>
           <li><%= link_to "Log in", new_session_url %></li>

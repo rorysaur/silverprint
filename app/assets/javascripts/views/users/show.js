@@ -1,6 +1,7 @@
 Silverprint.Views.UserShow = Backbone.View.extend({
   
   initialize: function () {
+    this.childViews = [];
     this.photos = this.model.get("photos");
     this.listenTo(this.photos, "all", this.render);
     this.listenTo(this.model, "follow unfollow", this.render);
@@ -31,6 +32,13 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     });
   },
   
+  removeChildViews: function () {
+    _(this.childViews).each(function (childView, index) {
+      console.log("removing child #" + index + "...");
+      childView.remove();
+    });
+  },
+  
   render: function () {
     console.log("rendering");
     var view = this;
@@ -48,6 +56,8 @@ Silverprint.Views.UserShow = Backbone.View.extend({
         model: photo,
         userAttrs: view.model.attributes
       });
+      
+      view.childViews.push(photoView);
       view.$('#photos').append(photoView.render().$el);
     });
     
@@ -60,6 +70,8 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     var formView = new Silverprint.Views.ProfilePicForm({
       model: this.model
     });
+    
+    this.childViews.push(formView);
     
     this.$("#profile-pic").html(formView.render().$el);
   },

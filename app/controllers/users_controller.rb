@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "Welcome to silverprint!"
       login!(@user)
-      redirect_to user_url(@user)
+      redirect_to root_url
     else
       flash[:errors] = @user.errors.full_messages
       render :new

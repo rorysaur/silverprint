@@ -1,11 +1,19 @@
 Silverprint.Views.UserFeed = Backbone.View.extend({
   
   initialize: function () {
+    this.childViews = [];
     this.listenTo(this.collection, "all", this.render)
   },
   
   events: {
     
+  },
+  
+  removeChildViews: function () {
+    _(this.childViews).each(function (childView, index) {
+      console.log("removing child #" + index + "...");
+      childView.remove();
+    });
   },
   
   render: function () {
@@ -24,6 +32,7 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
         userAttrs: photo.get("user"),
       });
       
+      view.childViews.push(photoView);
       view.$("#photos").append(photoView.render().$el);
     });
     

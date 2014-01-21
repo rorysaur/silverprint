@@ -5,7 +5,7 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
   },
   
   events: {
-    "submit form" : "submit",
+    "submit" : "submit",
     "change input[type=file]" : "encodeFile"
   },
   
@@ -43,6 +43,8 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
   
   submit: function (event) {
     event.preventDefault();
+    console.log("submitting...");
+    
     this.model.save({}, {
       success: function () {
         Backbone.history.navigate("#/");

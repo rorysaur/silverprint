@@ -44,6 +44,7 @@ Silverprint.Views.ProfilePicForm = Backbone.View.extend({
   submit: function (event) {
     var view = this;
     event.preventDefault();
+    console.log("submitting...");
     
     view.model.save({}, {
       success: function (model, response) {

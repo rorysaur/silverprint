@@ -20,9 +20,9 @@
 
 [x] photo upload
 
-[ ] profile pic upload
+[x] profile pic upload
 
-[ ] recursive view removal
+[x] recursive view removal
 
 [ ] grid view
 
@@ -30,7 +30,7 @@
 
 [ ] square crop
 
-[ ] adjust photo sizes
+[x] adjust photo sizes
 
 [ ] sortable photos
 

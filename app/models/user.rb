@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
   has_attached_file(
     :profile_pic,
     :styles => {
-      :big => "400x400#",
+      :large => "500x500#",
+      :show => "200x200#",
       :thumbnail => "50x50#"
     },
     :convert_options => {

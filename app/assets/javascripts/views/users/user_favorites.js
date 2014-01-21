@@ -1,11 +1,19 @@
 Silverprint.Views.UserFavorites = Backbone.View.extend({
   
   initialize: function () {
+    this.childViews = [];
     this.listenTo(Silverprint.currentUser, "unlike", this.removePhoto);
     this.listenTo(this.collection, "all", this.render);
   },
   
   events: {},
+  
+  removeChildViews: function () {
+    _(this.childViews).each(function (childView, index) {
+      console.log("removing child #" + index + "...");
+      childView.remove();
+    });
+  },
   
   removePhoto: function () {
     var view = this;
@@ -33,6 +41,7 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
         userAttrs: photo.get("user")
       });
       
+      view.childViews.push(photoView);
       view.$("#photos").append(photoView.render().$el);
     });
     
