@@ -28,7 +28,6 @@ Silverprint.Views.PhotoDetail = Backbone.View.extend({
       success: function () {
         view.model.fetch({
           success: function () {
-            console.log(view.model);
             view.model.trigger("like");
           }
         });
@@ -71,6 +70,7 @@ Silverprint.Views.PhotoDetail = Backbone.View.extend({
         view.model.fetch({
           success: function () {
             view.model.trigger("unlike");
+            Silverprint.currentUser.trigger("unlike");
           }
         });
       },

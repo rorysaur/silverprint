@@ -1,6 +1,20 @@
 Silverprint.Views.UserFavorites = Backbone.View.extend({
   
+  initialize: function () {
+    this.listenTo(Silverprint.currentUser, "unlike", this.removePhoto);
+  },
+  
   events: {},
+  
+  removePhoto: function () {
+    var view = this;
+    
+    view.collection.fetch({
+      success: function () {
+        view.render();
+      }
+    });
+  },
   
   render: function () {
     var view = this;
@@ -14,12 +28,16 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
     
     view.collection.each(function (photo) {
       var photoView = new Silverprint.Views.PhotoDetail({
-        model: photo
-      })
+        model: photo,
+        userAttrs: photo.get("user")
+      });
+      
+      view.$("#photos").append(photoView.render().$el);
     });
     
     return view;
   },
   
-  template: JST["users/favorites"]
+  template: JST["users/favorites"],
+  
 });

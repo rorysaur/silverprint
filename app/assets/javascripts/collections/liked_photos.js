@@ -1,6 +1,6 @@
 Silverprint.Collections.LikedPhotos = Backbone.Collection.extend({
   
-  model: Silverprint.Model.Photo,
+  model: Silverprint.Models.Photo,
   
   url: function () {
     return "/api/users/" + Silverprint.currentUser.id + "/favorites"

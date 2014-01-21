@@ -13,6 +13,18 @@ Silverprint.Routers.Router = Backbone.Router.extend({
   },
   
   favorites: function () {
+    var router = this;
+    var favoritePhotos = new Silverprint.Collections.LikedPhotos();
+    
+    favoritePhotos.fetch({
+      success: function (photos) {
+        var favoritesView = new Silverprint.Views.UserFavorites({
+          collection: photos
+        });
+        
+        router._swapView(favoritesView);
+      }
+    })
     
   },
   
