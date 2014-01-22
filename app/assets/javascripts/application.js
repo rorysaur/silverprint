@@ -24,3 +24,4 @@
 //= require bootstrap
 //= require jquery.timeago
 //= require jquery.serializeJSON
+//= require jquery.Jcrop

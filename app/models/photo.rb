@@ -1,5 +1,6 @@
 class Photo < ActiveRecord::Base
-  attr_accessible :photo
+  attr_accessible :photo, :x, :y, :width, :height
+  attr_accessor :x, :y, :width, :height
   
   validates :user, :photo, :presence => true
   
@@ -13,7 +14,8 @@ class Photo < ActiveRecord::Base
     },
     :convert_options => {
       :all => "-colorspace Gray"
-    }
+    },
+    :processors => [:cropper]
   )
   
   belongs_to :user
@@ -25,6 +27,22 @@ class Photo < ActiveRecord::Base
     :through => :likes,
     :source => :user
   )
+  
+  def x=(x)
+    @x = x.to_i
+  end
+  
+  def y=(y)
+    @y = y.to_i
+  end
+  
+  def width=(width)
+    @width = width.to_i
+  end
+  
+  def height=(height)
+    @height = height.to_i
+  end
   
   def liked_by?(user)
     self.likers.include?(user)

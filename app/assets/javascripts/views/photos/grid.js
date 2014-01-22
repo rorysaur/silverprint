@@ -13,7 +13,6 @@ Silverprint.Views.Grid = Backbone.View.extend({
   },
   
   lightbox: function (event) {
-    console.log($(event.currentTarget).attr("data-id"));
     var photoId = $(event.currentTarget).attr("data-id");
     $("#photoModal" + photoId).modal();
   },

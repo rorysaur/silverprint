@@ -1,5 +1,4 @@
 class Api::PhotosController < ApplicationController
-  # wrap_parameters
   
   before_filter :require_login
   before_filter :only => [:destroy] do |controller|
@@ -18,8 +17,11 @@ class Api::PhotosController < ApplicationController
   end
   
   def create
-    @photo = Photo.new(params[:photo])
+    @photo = Photo.new()
     @photo.user = current_user
+    @photo.x, @photo.y = params[:photo][:x], params[:photo][:y]
+    @photo.width, @photo.height = params[:photo][:width], params[:photo][:height]
+    @photo.photo = params[:photo][:photo]
     
     if @photo.save
       render :json => @photo

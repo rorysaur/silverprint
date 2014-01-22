@@ -41,3 +41,5 @@
 [ ] error handling
 
 [ ] pingdom
+
+[ ] attachment validations

@@ -47,4 +47,6 @@ Silverprint::Application.configure do
     }
   }
   
+  Dependencies.explicitly_unloadable_constants = 'Paperclip'
+  
 end

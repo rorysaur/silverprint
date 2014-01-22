@@ -6,10 +6,17 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
   
   events: {
     "submit" : "submit",
-    "change input[type=file]" : "encodeFile"
+    "change input[type=file]" : "handleFile"
   },
   
-  encodeFile: function (event) {
+  fillCoords: function (coords) {
+    $('#x').val(coords.x);
+  	$('#y').val(coords.y);
+  	$('#width').val(coords.w);
+  	$('#height').val(coords.h);
+  },
+  
+  handleFile: function (event) {
     event.preventDefault();
     var view = this;
     var file = event.currentTarget.files[0];
@@ -22,6 +29,13 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
       view.model.set({ photo: e.target.result });
       view.$("#preview").attr("src", e.target.result);
       view.$("#preview").show();
+      $(function ($) {
+        $("#preview").Jcrop({
+          onSelect: view.fillCoords,
+          setSelect: [ 0, 0, 300, 300],
+          aspectRatio: 1
+        });
+      });
     }
     
     reader.onerror = function(error) {
@@ -47,6 +61,10 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
   submit: function (event) {
     event.preventDefault();
     console.log("submitting...");
+    
+    var attrs = this.$el.serializeJSON();
+    this.model.set(attrs.photo);
+    console.log(this.model.attributes);
     
     this.model.save({}, {
       success: function () {
