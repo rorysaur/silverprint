@@ -46,9 +46,10 @@ Silverprint.Views.UserRow = Backbone.View.extend({
   unfollow: function (event) {
     var view = this;
     event.preventDefault();
+    
     var follow = new Silverprint.Models.Follow(view.model.get("follow"));
     follow.urlRoot = "/api/follows";
-    console.log(follow);
+
     if (follow) {
       follow.destroy({
         success: function () {

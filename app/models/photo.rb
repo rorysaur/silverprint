@@ -12,9 +12,6 @@ class Photo < ActiveRecord::Base
       :grid => "300x300#",
       :thumbnail => "50x50#"
     },
-    :convert_options => {
-      :all => "-colorspace Gray"
-    },
     :processors => [:cropper]
   )
   

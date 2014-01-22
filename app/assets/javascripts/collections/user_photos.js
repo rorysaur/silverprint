@@ -11,6 +11,6 @@ Silverprint.Collections.UserPhotos = Backbone.Collection.extend({
   },
   
   comparator: function (photo) {
-    return photo.get('created_at') * -1;
+    return photo.get('id') * -1;
   }
 });

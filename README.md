@@ -36,11 +36,11 @@
 
 [x] feed refresh
 
-[ ] domain name
+[x] domain name
 
-[ ] fix unfollow
+[x] fix unfollow
 
-[ ] button groups
+[x] button groups
 
 [ ] thumbnail(?)
 

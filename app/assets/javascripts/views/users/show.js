@@ -13,7 +13,8 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     "click a#change-profile-pic" : "showProfilePicForm",   
     "click .follow" : "follow",
     "click .unfollow" : "unfollow",
-    "click #grid" : "toggleGrid"
+    "click #grid" : "toggleGrid",
+    "click #vertical" : "toggleVertical"
   },
     
   follow: function (event) {
@@ -62,8 +63,8 @@ Silverprint.Views.UserShow = Backbone.View.extend({
       });
       
       view.childViews.push(verticalView);
-      console.log(view.childViews);
       view.$("#photos").html(verticalView.render().$el);
+      view.$("#vertical").addClass("active");
       
     } else if (view.mode === "grid") {
       var gridView = new Silverprint.Views.Grid({
@@ -72,6 +73,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
       
       view.childViews.push(gridView);
       view.$("#photos").html(gridView.render().$el);
+      view.$("#grid").addClass("active");
     }
     
     return view;
@@ -92,7 +94,12 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   template: JST["users/show"],
   
   toggleGrid: function () {
-    this.mode = (this.mode === "vertical") ? "grid" : "vertical";
+    this.mode = "grid";
+    this.render();
+  },
+  
+  toggleVertical: function () {
+    this.mode = "vertical";
     this.render();
   },
   

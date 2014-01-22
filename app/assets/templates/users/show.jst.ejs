@@ -1,14 +1,15 @@
 <div class="clearfix">
   <div class="pull-left">
-    <%= view.imageTag(user.get('profilePicShowUrl')) %>
+    <%= view.imageTag(user.get('profilePicShowUrl'),
+                      { className: "img-circle" }) %>
   </div>
   <h1><%= user.get('username') %></h1>
   
   <div id="follow">
     <% if (user.isFollowedBy(currentUser)) { %>
-      <button class="unfollow btn btn-default">unfollow</button>
+      <button class="unfollow btn btn-default btn-sm">unfollow</button>
     <% } else if (user.id != currentUser.id) { %>
-      <button class="follow btn btn-default">follow</button>
+      <button class="follow btn btn-default btn-sm">follow</button>
     <% } %>
   </div>
 </div>
@@ -23,13 +24,16 @@
   </div>  
 <% } %>
 
-<button id="grid" class="btn btn-default">
-  <% if (view.mode === "vertical") { %>
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-default" id="grid">
+    <input type="radio">
     <span class="glyphicon glyphicon-th-large"></span>
-  <% } else { %>
+  </label>
+  <label class="btn btn-default" id="vertical">
+    <input type="radio">
     <span class="glyphicon glyphicon-align-justify"></span>
-  <% } %>
-</button>
+  </label>
+</div>
 
 <div id="photos">
 </div>

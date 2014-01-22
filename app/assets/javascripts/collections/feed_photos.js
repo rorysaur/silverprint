@@ -7,7 +7,7 @@ Silverprint.Collections.FeedPhotos = Backbone.Collection.extend({
   },
   
   comparator: function (photo) {
-    return photo.get("createdAt") * -1;
+    return photo.get("id") * -1;
   },
   
   parse: function (data) {

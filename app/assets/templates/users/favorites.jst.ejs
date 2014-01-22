@@ -1,10 +1,13 @@
-<button id="grid" class="btn btn-default">
-  <% if (view.mode === "vertical") { %>
+<div class="btn-group" data-toggle="buttons">
+  <label id="grid" class="btn btn-default">
+    <input type="radio">
     <span class="glyphicon glyphicon-th-large"></span>
-  <% } else { %>
+  </label>
+  <label id="vertical" class="btn btn-default">
+    <input type="radio">
     <span class="glyphicon glyphicon-align-justify"></span>
-  <% } %>
-</button>
+  </label>
+</div>
 
 <div id="photos">
 </div>

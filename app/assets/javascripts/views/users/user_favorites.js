@@ -8,7 +8,8 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
   },
   
   events: {
-    "click #grid" : "toggleGrid"
+    "click #grid" : "toggleGrid",
+    "click #vertical" : "toggleVertical"
   },
   
   removeChildViews: function () {
@@ -47,6 +48,7 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
       
       view.childViews.push(verticalView);
       view.$("#photos").html(verticalView.render().$el);
+      view.$("#vertical").addClass("active");
       
     } else if (view.mode === "grid") {
       var gridView = new Silverprint.Views.Grid({
@@ -55,6 +57,7 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
       
       view.childViews.push(gridView);
       view.$("#photos").html(gridView.render().$el);
+      view.$("#grid").addClass("active");
     }
     
     return view;
@@ -63,7 +66,12 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
   template: JST["users/favorites"],
   
   toggleGrid: function () {
-    this.mode = (this.mode === "vertical") ? "grid" : "vertical";
+    this.mode = "grid";
+    this.render();
+  },
+  
+  toggleVertical: function () {
+    this.mode = "vertical";
     this.render();
   }
 });

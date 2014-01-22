@@ -6,7 +6,12 @@ class Api::UsersController < ApplicationController
   end
   
   def index
-    @users = User.includes(:followers).all
+    @users = User.includes(:followers, :follows_received).all
+    
+    @users.each do |user|
+      user.follows_received.select! { |follow| follow.follower == current_user }
+    end
+    
     render "api/users/index"
   end
   
