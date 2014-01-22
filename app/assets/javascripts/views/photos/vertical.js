@@ -4,10 +4,6 @@ Silverprint.Views.Vertical = Backbone.View.extend({
     this.childViews = [];
     this.page = options.page;
   },
-    
-  attributes: {
-    "class" : "row"
-  },
   
   events: {
     "click .vertical-photo" : "lightbox"

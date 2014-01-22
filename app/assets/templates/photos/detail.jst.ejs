@@ -1,39 +1,43 @@
 <p></p>
-<div class="photo-detail">
-  <div>
-    <%= view.imageTag(userAttrs.profilePicUrl, { className: "img-circle" }) %>
-    <%= view.linkTo(userAttrs.username, "#users/" + userAttrs.id) %>
-    <%= $.timeago(photo.get("createdAt")) %>
-  </div>
-  <div class="vertical-photo" data-id="<%= photo.id %>">
-    <%= view.imageTag(photo.get("photoUrl")) %>
-  </div>
-  <div>
-    <% if (photo.get("likers").length > 0) { %>
-      <% if (photo.get("likers").length < 8) { %>
-        <% var getUsername = function (obj) { return obj.username } %>
-        <span class="glyphicon glyphicon-heart"></span> 
-        <%= photo.get("likers").map(getUsername).join(", ") %>
-      <% } else { %>
-        <%= photo.get("likers").length %> likes
+<div class="row">
+  <div class="photo-detail col-xs-6 col-xs-offset-1">
+    <div class="photo-container">
+      <%= view.imageTag(userAttrs.profilePicUrl, { className: "img-circle" }) %>
+      <%= view.linkTo(userAttrs.username, "#users/" + userAttrs.id) %>
+      <%= $.timeago(photo.get("createdAt")) %>
+    </div>
+    <div class="clearfix">
+      <div class="vertical-photo pull-left" data-id="<%= photo.id %>">
+        <%= view.imageTag(photo.get("photoUrl"), { className: "thumbnail" }) %>
+      </div>
+      <div class="btn-group-vertical">
+        <% if (photo.isLikedBy(currentUser)) { %>
+          <button class="unlike btn btn-default" data-id="<%= photo.id %>">
+            <span class="glyphicon glyphicon-heart glyphicon-red"></span>
+          </button>
+        <% } else { %>
+          <button class="like btn btn-default" data-id="<%= photo.id %>">
+            <span class="glyphicon glyphicon-heart-empty"></span>
+          </button>
+        <% } %>
+        <% if (photo.get("userId") == currentUser.id) { %>
+          <button class="delete btn btn-default">
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        <% } %>
+      </div>
+    </div>
+    <div>
+      <% if (photo.get("likers").length > 0) { %>
+        <% if (photo.get("likers").length < 8) { %>
+          <% var getUsername = function (obj) { return obj.username } %>
+          <span class="glyphicon glyphicon-heart"></span> 
+          <%= photo.get("likers").map(getUsername).join(", ") %>
+        <% } else { %>
+          <%= photo.get("likers").length %> likes
+        <% } %>
       <% } %>
-    <% } %>
-  </div>
-  <div>
-    <% if (photo.isLikedBy(currentUser)) { %>
-      <button class="unlike btn btn-default" data-id="<%= photo.id %>">
-        <span class="glyphicon glyphicon-heart glyphicon-red"></span>
-      </button>
-    <% } else { %>
-      <button class="like btn btn-default" data-id="<%= photo.id %>">
-        <span class="glyphicon glyphicon-heart-empty"></span>
-      </button>
-    <% } %>
-    <% if (photo.get("userId") == currentUser.id) { %>
-      <button class="delete btn btn-default">
-        <span class="glyphicon glyphicon-trash"></span>
-      </button>
-    <% } %>
+    </div>
   </div>
 </div>
 <p></p>

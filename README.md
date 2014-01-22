@@ -42,7 +42,7 @@
 
 [x] button groups
 
-[ ] thumbnail(?)
+[x] thumbnail
 
 [ ] fade
 

@@ -38,7 +38,9 @@
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li>
-            <%= link_to current_user.username, "#users/#{current_user.id}" %>
+            <%= link_to(current_user.username,
+                        "#users/#{current_user.id}",
+                        :class => "username") %>
           </li>
           <li><%= link_to "Log out", session_url, :method => :delete %></li>
         <% else %>
