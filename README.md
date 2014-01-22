@@ -34,9 +34,9 @@
 
 [ ] sortable photos
 
-[ ] glyphicons
+[x] glyphicons
 
-[ ] feed refresh
+[x] feed refresh
 
 [ ] error handling
 

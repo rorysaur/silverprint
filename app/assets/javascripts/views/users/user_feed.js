@@ -1,13 +1,14 @@
 Silverprint.Views.UserFeed = Backbone.View.extend({
   
   initialize: function () {
-    this.mode = "grid";
+    this.mode = "vertical";
     this.childViews = [];
     this.listenTo(this.collection, "all", this.render)
   },
   
   events: {
-    "click #grid" : "toggleGrid"
+    "click #grid" : "toggleGrid",
+    "click #refresh" : "refresh"
   },
   
   removeChildViews: function () {
@@ -18,8 +19,13 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
     });
   },
   
+  refresh: function () {
+    this.collection.fetch();
+  },
+  
   render: function () {
     var view = this;
+    console.log("rendering...");
     
     var renderedContent = view.template({
       photos: view.collection,

@@ -9,7 +9,7 @@ Silverprint.Views.Grid = Backbone.View.extend({
   },
   
   events: {
-    "click .photo" : "lightbox"
+    "click .grid-photo" : "lightbox"
   },
   
   lightbox: function (event) {

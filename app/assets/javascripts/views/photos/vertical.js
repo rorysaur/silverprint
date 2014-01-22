@@ -10,7 +10,7 @@ Silverprint.Views.Vertical = Backbone.View.extend({
   },
   
   events: {
-    "click .photo" : "lightbox"
+    "click .vertical-photo" : "lightbox"
   },
   
   lightbox: function (event) {
