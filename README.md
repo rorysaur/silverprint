@@ -48,6 +48,8 @@
 
 [ ] sortable photos
 
+[ ] followers/following views
+
 [ ] error handling
 
 [ ] pingdom

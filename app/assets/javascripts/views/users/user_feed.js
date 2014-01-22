@@ -24,9 +24,10 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
     this.collection.fetch();
   },
   
-  render: function () {
+  render: function (speed) {
     var view = this;
     console.log("rendering...");
+    view.$el.hide();
     
     var renderedContent = view.template({
       photos: view.collection,
@@ -55,6 +56,7 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
       view.$("#grid").addClass("active");
     }
     
+    view.$el.fadeIn(speed || "slow");
     return view;
   },
   

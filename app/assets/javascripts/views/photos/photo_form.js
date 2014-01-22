@@ -46,8 +46,9 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     reader.readAsDataURL(file);
   },
   
-  render: function () {
+  render: function (speed) {
     var view = this;
+    view.$el.hide();
     
     var renderedContent = view.template({
       model: view.model
@@ -55,6 +56,7 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     
     view.$el.html(renderedContent);
     view.$("#preview").hide();
+    view.$el.fadeIn(speed || "slow");
     return view;
   },
   

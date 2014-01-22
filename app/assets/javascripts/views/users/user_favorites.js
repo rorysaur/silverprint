@@ -30,8 +30,9 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
     });
   },
   
-  render: function () {
+  render: function (speed) {
     var view = this;
+    view.$el.hide();
     
     var renderedContent = view.template({
       photos: view.collection,
@@ -60,6 +61,7 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
       view.$("#grid").addClass("active");
     }
     
+    view.$el.fadeIn(speed || "slow");
     return view;
   },
   

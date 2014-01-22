@@ -1,5 +1,5 @@
 Silverprint.Views.Vertical = Backbone.View.extend({
-  
+    
   initialize: function (options) {
     this.childViews = [];
     this.page = options.page;
@@ -49,7 +49,6 @@ Silverprint.Views.Vertical = Backbone.View.extend({
       
       view.$el.append(lightboxModal);
     });
-    
     
     return view;
   },

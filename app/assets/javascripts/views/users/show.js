@@ -43,9 +43,10 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     });
   },
   
-  render: function () {
+  render: function (speed) {
     console.log("rendering");
     var view = this;
+    view.$el.hide();
     
     var renderedContent = view.template({
       user: view.model,
@@ -76,6 +77,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
       view.$("#grid").addClass("active");
     }
     
+    view.$el.fadeIn(speed || "slow");
     return view;
   },
   
