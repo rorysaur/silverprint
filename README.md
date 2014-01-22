@@ -28,7 +28,7 @@
 
 [x] lightbox view
 
-[ ] square crop
+[x] square crop
 
 [x] adjust photo sizes
 

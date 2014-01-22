@@ -66,11 +66,11 @@ class User < ActiveRecord::Base
   
   def self.with_feed_data(id)
     User.includes(
-          :photos,
+          { :photos => [:user, :likes, :likers] },
           :likes,
           :liked_photos,
           :following => {
-            :photos => [:user, :likers]
+            :photos => [:user, :likes, :likers]
           })
         .find(id)
   end

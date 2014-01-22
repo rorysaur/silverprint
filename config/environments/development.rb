@@ -46,7 +46,5 @@ Silverprint::Application.configure do
       :s3_host_name => 's3-us-west-1.amazonaws.com'
     }
   }
-  
-  Dependencies.explicitly_unloadable_constants = 'Paperclip'
-  
+    
 end

@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   end
   
   def favorites
-    @user = User.includes(:likes, :liked_photos => [:user, :likes])
+    @user = User.includes(:likes, :liked_photos => [:user, :likes, :likers])
                 .find(params[:id])
     @photos = @user.liked_photos.sort_by(&:created_at).reverse
   end
