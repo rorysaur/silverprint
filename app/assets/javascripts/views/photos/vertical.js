@@ -6,15 +6,15 @@ Silverprint.Views.Vertical = Backbone.View.extend({
   },
   
   events: {
-    "click .vertical-photo" : "lightbox"
+    // "click .vertical-photo" : "lightbox"
   },
   
-  lightbox: function (event) {
-    console.log($(event.currentTarget).attr("data-id"));
-    var photoId = $(event.currentTarget).attr("data-id");
-    $("#photoModal" + photoId).modal();
-  },
-  
+  // lightbox: function (event) {
+  //   console.log($(event.currentTarget).attr("data-id"));
+  //   var photoId = $(event.currentTarget).attr("data-id");
+  //   $("#photoModal" + photoId).modal();
+  // },
+  // 
   lightboxTemplate: JST["modals/lightbox"],
   
   removeChildViews: function () {

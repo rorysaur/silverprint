@@ -24,6 +24,10 @@ body {
   background-color: #222;
 }
 
+.glyphicon-blue {
+  color: #428bca;
+}
+
 .glyphicon-red {
   color: red;
 }
@@ -31,6 +35,10 @@ body {
 .grid-photo {
   padding: 10px;
   margin: auto;
+}
+
+.btn-link {
+  color: #ddd;
 }
 
 .navbar-inverse {
@@ -42,9 +50,14 @@ body {
   margin: auto;
 }
 
+.photo-detail {
+  margin-bottom: 40px;
+}
+
 .thumbnail {
   background-color: #333;
   border: none;
   display: inline-block;
+  margin-bottom: 0px;
 }
 

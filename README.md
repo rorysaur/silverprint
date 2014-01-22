@@ -44,21 +44,23 @@
 
 [x] thumbnail
 
-[ ] fade
+[x] fade
+
+[x] fullscreen
+
+[x] logout glyph
 
 [ ] sortable photos
 
 [ ] followers/following views
 
-[ ] error handling
+[ ] loading indicator
+
+[ ] error messages/alerts
 
 [ ] pingdom
 
 [ ] attachment validations
-
-[ ] layout panels
-
-[ ] transitions
 
 [ ] brightness settings
 
@@ -66,17 +68,11 @@
 
 [ ] photo effects
 
-[ ] loading messages
-
-[ ] error messages/alerts
-
 [ ] 404 view
 
 [ ] new follows/likes notifications
 
 [ ] root page
-
-[ ] logout glyph
 
 [ ] choose file button
 

@@ -12,16 +12,19 @@
       </div>
       <div class="btn-group-vertical">
         <% if (photo.isLikedBy(currentUser)) { %>
-          <button class="unlike btn btn-default" data-id="<%= photo.id %>">
+          <button class="unlike btn btn-link" data-id="<%= photo.id %>">
             <span class="glyphicon glyphicon-heart glyphicon-red"></span>
           </button>
         <% } else { %>
-          <button class="like btn btn-default" data-id="<%= photo.id %>">
+          <button class="like btn btn-link" data-id="<%= photo.id %>">
             <span class="glyphicon glyphicon-heart-empty"></span>
           </button>
         <% } %>
+        <button class="fullscreen btn btn-link" data-id="<%= photo.id %>">
+          <span class="glyphicon glyphicon-fullscreen"></span>
+        </button>
         <% if (photo.get("userId") == currentUser.id) { %>
-          <button class="delete btn btn-default">
+          <button class="delete btn btn-link">
             <span class="glyphicon glyphicon-trash"></span>
           </button>
         <% } %>

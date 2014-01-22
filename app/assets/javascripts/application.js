@@ -25,3 +25,4 @@
 //= require jquery.timeago
 //= require jquery.serializeJSON
 //= require jquery.Jcrop
+//= require screenfull

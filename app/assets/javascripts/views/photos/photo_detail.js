@@ -6,14 +6,25 @@ Silverprint.Views.PhotoDetail = Backbone.View.extend({
   },
     
   events: {
-    "click .delete": "delete",
-    "click .like": "like",
-    "click .unlike": "unlike"
+    "click .delete" : "delete",
+    "click .fullscreen" : "fullscreen",
+    "click .like" : "like",
+    "click .unlike" : "unlike"
   },
   
   delete: function (event) {
     event.preventDefault();
     this.model.destroy();
+  },
+  
+  fullscreen: function (event) {
+    event.preventDefault();
+    var photoId = parseInt($(event.currentTarget).attr("data-id"));
+    var photo = $("div[data-id=" + photoId + "] img")[0];
+    if (screenfull.enabled) {
+      console.log(photo);
+      screenfull.request(photo);
+    }
   },
   
   like: function (event) {

@@ -9,14 +9,14 @@ Silverprint.Views.Grid = Backbone.View.extend({
   },
   
   events: {
-    "click .grid-photo" : "lightbox"
+    // "click .grid-photo" : "lightbox"
   },
   
-  lightbox: function (event) {
-    var photoId = $(event.currentTarget).attr("data-id");
-    $("#photoModal" + photoId).modal();
-  },
-  
+  // lightbox: function (event) {
+  //   var photoId = $(event.currentTarget).attr("data-id");
+  //   $("#photoModal" + photoId).modal();
+  // },
+  // 
   lightboxTemplate: JST["modals/lightbox"],
   
   removeChildViews: function () {

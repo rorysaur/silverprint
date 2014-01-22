@@ -1,3 +1,24 @@
-<div class="grid-photo" data-id="<%= photo.id %>">
-  <%= view.imageTag(photo.get("photoGridUrl"), { className: "thumbnail" }) %>
+<div class="clearfix">
+  <div class="grid-photo" data-id="<%= photo.id %>">
+    <%= view.imageTag(photo.get("photoGridUrl"), { className: "thumbnail" }) %>
+    <div class="btn-group">
+      <% if (photo.isLikedBy(currentUser)) { %>
+        <button class="unlike btn btn-link btn-xs" data-id="<%= photo.id %>">
+          <span class="glyphicon glyphicon-heart glyphicon-red"></span>
+        </button>
+      <% } else { %>
+        <button class="like btn btn-link btn-xs" data-id="<%= photo.id %>">
+          <span class="glyphicon glyphicon-heart-empty"></span>
+        </button>
+      <% } %>
+      <button class="fullscreen btn btn-link btn-xs" data-id="<%= photo.id %>">
+        <span class="glyphicon glyphicon-fullscreen"></span>
+      </button>
+      <% if (photo.get("userId") == currentUser.id) { %>
+        <button class="delete btn btn-link btn-xs">
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
+      <% } %>
+    </div>
+  </div>
 </div>

@@ -15,13 +15,24 @@ window.Silverprint = {
           collection: Silverprint.users
         });
         Backbone.history.start();
+        Silverprint.dispatcher = _.extend({}, Backbone.Events);
       },
       
       error: function (xhr) {
         console.log(xhr)
       }
-    });    
+    });
     
+    this.installFullscreenHandler();
+    
+  },
+  
+  installFullscreenHandler: function () {
+    $("#fullscreen").click(function () {
+      if (screenfull.enabled) {
+        screenfull.request();
+      }
+    });
   }
 };
 
