@@ -1,7 +1,11 @@
 <h1>feed</h1>
 
-<button id="grid">
-  <%= view.mode === "vertical" ? "grid" : "vertical" %>
+<button id="grid" class="btn btn-default">
+  <% if (view.mode === "vertical") { %>
+    <span class="glyphicon glyphicon-th-large"></span>
+  <% } else { %>
+    <span class="glyphicon glyphicon-align-justify"></span>
+  <% } %>
 </button>
 
 <div id="photos">

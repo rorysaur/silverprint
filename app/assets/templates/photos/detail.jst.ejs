@@ -1,26 +1,39 @@
 <p></p>
-<div>
-  <%= view.imageTag(userAttrs.profilePicUrl) %>
-  <%= view.linkTo(userAttrs.username, "#users/" + userAttrs.id) %>
-  <%= $.timeago(photo.get("createdAt")) %>
-</div>
-<div class="photo" data-id="<%= photo.id %>">
-  <%= view.imageTag(photo.get("photoUrl")) %>
-</div>
-<div>
-  <% var getUsername = function (obj) { return obj.username } %>
-  liked by: <%= photo.get("likers").map(getUsername).join(", ") %>
-</div>
-<div>
-  <% if (photo.isLikedBy(currentUser)) { %>
-    <button class="unlike" data-id="<%= photo.id %>">unlike</button>
-  <% } else { %>
-    <button class="like" data-id="<%= photo.id %>">like</button>
-  <% } %>
-</div>
-<div>
-  <% if (photo.get("userId") == currentUser.id) { %>
-    <button class="delete">delete</button>
-  <% } %>
+<div class="photo">
+  <div>
+    <%= view.imageTag(userAttrs.profilePicUrl, { className: "img-circle" }) %>
+    <%= view.linkTo(userAttrs.username, "#users/" + userAttrs.id) %>
+    <%= $.timeago(photo.get("createdAt")) %>
+  </div>
+  <div data-id="<%= photo.id %>">
+    <%= view.imageTag(photo.get("photoUrl")) %>
+  </div>
+  <div>
+    <% if (photo.get("likers").length > 0) { %>
+      <% if (photo.get("likers").length < 8) { %>
+        <% var getUsername = function (obj) { return obj.username } %>
+        <span class="glyphicon glyphicon-heart"></span> 
+        <%= photo.get("likers").map(getUsername).join(", ") %>
+      <% } else { %>
+        <%= photo.get("likers").length %> likes
+      <% } %>
+    <% } %>
+  </div>
+  <div>
+    <% if (photo.isLikedBy(currentUser)) { %>
+      <button class="unlike btn btn-default" data-id="<%= photo.id %>">
+        <span class="glyphicon glyphicon-heart red-heart"></span>
+      </button>
+    <% } else { %>
+      <button class="like btn btn-default" data-id="<%= photo.id %>">
+        <span class="glyphicon glyphicon-heart-empty"></span>
+      </button>
+    <% } %>
+    <% if (photo.get("userId") == currentUser.id) { %>
+      <button class="delete btn btn-default">
+        <span class="glyphicon glyphicon-trash"></span>
+      </button>
+    <% } %>
+  </div>
 </div>
 <p></p>

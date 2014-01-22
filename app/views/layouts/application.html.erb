@@ -21,10 +21,18 @@
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="nav navbar-nav navbar-left">
         <% if current_user %>
-          <li><%= link_to "Feed", "#" %></li>
-          <li><%= link_to "New Photo", "#new" %></li>
-          <li><%= link_to "All Users", "#users" %></li>
-          <li><%= link_to "<3", "#favorites" %></li>
+        <li><a href="#">
+          <span class="glyphicon glyphicon-home"></span>
+        </a></li>
+          <li><a href="#new">
+            <span class="glyphicon glyphicon-camera"></span>
+          </a></li>
+          <li><a href="#users">
+            <span class="glyphicon glyphicon-user"></span>
+          </a></li>
+          <li><a href="#favorites">
+            <span class="glyphicon glyphicon-heart"></span>
+          </a></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">

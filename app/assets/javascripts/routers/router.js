@@ -23,6 +23,9 @@ Silverprint.Routers.Router = Backbone.Router.extend({
         });
         
         router._swapView(favoritesView);
+        
+        $(".nav .glyphicon").removeClass("glyphicon-red");
+        $(".nav .glyphicon-heart").addClass("glyphicon-red");
       }
     })
     
@@ -39,6 +42,9 @@ Silverprint.Routers.Router = Backbone.Router.extend({
         });
         
         router._swapView(feedView);
+        
+        $(".nav .glyphicon").removeClass("glyphicon-red");
+        $(".nav .glyphicon-home").addClass("glyphicon-red");
       }
     });
   },
@@ -52,19 +58,25 @@ Silverprint.Routers.Router = Backbone.Router.extend({
     });
     
     router._swapView(photoFormView);
+    
+    $(".nav .glyphicon").removeClass("glyphicon-red");
+    $(".nav .glyphicon-camera").addClass("glyphicon-red");
   },
   
   usersIndex: function () {
     var router = this;
     var allUsers = new Silverprint.Collections.AllUsers();
-    
+        
     allUsers.fetch({
       success: function (users) {
         var indexView = new Silverprint.Views.UsersIndex({
           collection: users
         });
-    
+        
         router._swapView(indexView);
+        
+        $(".nav .glyphicon").removeClass("glyphicon-red");
+        $(".nav .glyphicon-user").addClass("glyphicon-red");
       }
     });    
   },
@@ -80,6 +92,8 @@ Silverprint.Routers.Router = Backbone.Router.extend({
         });
 
         router._swapView(showView);
+        
+        $(".nav .glyphicon").removeClass("glyphicon-red");
       }
     });
   },
