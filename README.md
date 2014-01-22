@@ -38,6 +38,14 @@
 
 [ ] domain name
 
+[ ] fix unfollow
+
+[ ] button groups
+
+[ ] thumbnail(?)
+
+[ ] fade
+
 [ ] sortable photos
 
 [ ] error handling
@@ -58,10 +66,18 @@
 
 [ ] loading messages
 
-[ ] error messages
+[ ] error messages/alerts
 
 [ ] 404 view
 
 [ ] new follows/likes notifications
 
 [ ] root page
+
+[ ] logout glyph
+
+[ ] choose file button
+
+[ ] pagination
+
+[ ] friendlyId

@@ -19,6 +19,10 @@ img {
   margin: auto;
 }
 
+body {
+  background-color: #222;
+}
+
 .glyphicon-red {
   color: red;
 }
@@ -26,6 +30,10 @@ img {
 .grid-photo {
   padding: 5px;
   margin: auto;
+}
+
+.navbar-inverse {
+  background-color: #333;
 }
 
 .photo-container {
