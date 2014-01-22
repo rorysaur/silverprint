@@ -32,14 +32,36 @@
 
 [x] adjust photo sizes
 
-[ ] sortable photos
-
 [x] glyphicons
 
 [x] feed refresh
+
+[ ] domain name
+
+[ ] sortable photos
 
 [ ] error handling
 
 [ ] pingdom
 
 [ ] attachment validations
+
+[ ] layout panels
+
+[ ] transitions
+
+[ ] brightness settings
+
+[ ] contrast settings
+
+[ ] photo effects
+
+[ ] loading messages
+
+[ ] error messages
+
+[ ] 404 view
+
+[ ] new follows/likes notifications
+
+[ ] root page
