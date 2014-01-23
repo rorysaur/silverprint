@@ -12,14 +12,12 @@ window.Silverprint = {
       success: function () {
         Silverprint.router = new Silverprint.Routers.Router({
           $rootEl: $('#content'),
-          collection: Silverprint.users
         });
         Backbone.history.start();
-        Silverprint.dispatcher = _.extend({}, Backbone.Events);
       },
       
-      error: function (xhr) {
-        console.log(xhr)
+      error: function (model, xhr) {
+        console.log(xhr);
       }
     });
     

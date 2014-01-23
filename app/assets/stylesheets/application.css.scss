@@ -103,6 +103,44 @@ body.dragging, body.dragging * {
   z-index: 2000;
 }
 
+.photo-jumbotron-row {
+  border: 1px solid transparent;
+  box-sizing: content-box;
+  height: 400px;
+  width: 800px;
+}
+
+.photo-jumbotron.square.large {
+  background-color: #333;
+  border: 1px solid transparent;
+  height: 400px;
+  width: 400px;
+}
+
+.photo-jumbotron.square.large img {
+  height: 398px;
+  width: 398px;
+}
+
+.photo-jumbotron.square.small {
+  background-color: #333;
+  border: 1px solid transparent;
+  height: 200px;
+  width: 200px;
+}
+
+.photo-jumbotron.square.small img {
+  height: 198px;
+  width: 198px;
+}
+
+.photo-jumbotron-row h1 {
+  position: absolute;
+  top: 200px;
+  left: 0;
+  width: 100px;
+}
+
 li.sortable-element {
   cursor: move;
 }

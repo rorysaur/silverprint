@@ -36,10 +36,14 @@
 - [x] profile pic modal
 - [x] error messages/alerts
 - [x] attachment validations
-- [ ] root page
-- [ ] 404/500 views
 - [x] style forms
-- [ ] demo account
+- [x] root page
+- [ ] create demo account
+- [ ] demo walkthrough
+- [ ] this readme
+- [ ] about/resume
+- [ ] 404/500 views
+- [ ] add photo from url
 - [ ] choose file button
 - [ ] brightness/contrast enhance
 - [ ] photo effects

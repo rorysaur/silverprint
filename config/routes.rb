@@ -15,6 +15,9 @@ Silverprint::Application.routes.draw do
   
     resources :photos, :only => [:show, :create, :update, :destroy] do
       resources :likes, :only => :create
+      collection do
+        get 'random'
+      end
     end
   
     resources :follows, :only => :destroy

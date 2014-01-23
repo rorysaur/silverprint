@@ -28,6 +28,11 @@ class Photo < ActiveRecord::Base
     :source => :user
   )
   
+  def self.random
+    offset = rand(Photo.count)
+    Photo.first(:offset => offset)
+  end
+  
   def x=(x)
     @x = x.to_i
   end

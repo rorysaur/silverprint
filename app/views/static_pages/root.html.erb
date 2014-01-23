@@ -1,14 +1,15 @@
-<!-- <div id="carousel" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="..." alt="...">
-    </div>
-    <div class="item">
-    </div>
-    <div class="item">
-    </div>
+<div class="photo-jumbotron-row">
+  <div class="photo-jumbotron square large pull-left" id="square-large">
   </div>
-</div> -->
+  <div class="photo-jumbotron square small pull-left" id="square1">
+  </div>
+  <div class="photo-jumbotron square small pull-left" id="square2">
+  </div>
+  <div class="photo-jumbotron square small pull-left" id="square3">
+  </div>
+  <div class="photo-jumbotron square small pull-left" id="square4">
+  </div>
+</div>
 
 <div class="jumbotron">
   <h1>silverprint.</h1>
@@ -16,3 +17,44 @@
     the web instagram you've been secretly wishing for.
   </p>
 </div>
+
+<script>
+  $(function () {
+    var getRandomPhoto = function ($target) {
+      $target.hide();
+      var img = $("<img>");
+      
+      $.ajax({
+        url: "/api/photos/random",
+        type: "GET",
+        success: function (photoAttrs) {
+          img.attr("src", photoAttrs.photoUrl);
+        }
+      });
+      
+      $target.html(img);
+      $target.fadeIn(1800);
+    };
+        
+    var squares = [
+      "#square-large",
+      "#square1",
+      "#square2",
+      "#square3",
+      "#square4"
+    ];
+    
+    squares.forEach(function (square) {
+      getRandomPhoto($(square));
+      
+      (function loop() {
+        var randInterval = (Math.random() * 5000) + 3000;
+        setTimeout(function () {
+          getRandomPhoto($(square));
+          loop();
+        }, randInterval);
+      }());
+    });
+    
+  });
+</script>
