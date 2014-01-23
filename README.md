@@ -34,14 +34,15 @@
 - [x] followers/following views
 - [x] loading spinner
 - [x] profile pic modal
-- [ ] error messages/alerts
+- [x] error messages/alerts
 - [x] attachment validations
 - [ ] root page
+- [ ] 404/500 views
 - [ ] style forms
+- [ ] demo account
 - [ ] choose file button
 - [ ] brightness/contrast enhance
 - [ ] photo effects
-- [ ] 404 view
 - [ ] pagination
 - [ ] friendlyId
 - [ ] infinite scroll

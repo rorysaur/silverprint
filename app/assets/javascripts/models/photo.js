@@ -13,5 +13,11 @@ Silverprint.Models.Photo = Backbone.Model.extend({
   toJSON: function () {
     var attrs = _.clone(this.attributes);
     return { photo: attrs };
+  },
+  
+  validates: function (attrs) {
+    if (!attrs || !attrs.photo) {
+      return "photo can't be blank";
+    }
   }
 });

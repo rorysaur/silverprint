@@ -1,6 +1,6 @@
 class Api::PhotosController < ApplicationController
   
-  before_filter :require_login
+  before_filter :require_login, :except => [:random]
   before_filter :only => [:update, :destroy] do |controller|
     @photo = Photo.find(params[:id])
     controller.authenticate(@photo.user.id)
@@ -28,7 +28,7 @@ class Api::PhotosController < ApplicationController
     if @photo.save
       render :json => @photo
     else
-      render :json => @photos.errors, :status => 422
+      render :json => @photo.errors, :status => 422
     end
   end
   
@@ -39,7 +39,7 @@ class Api::PhotosController < ApplicationController
     if @photo.update_attribute(:order_id, params[:photo][:orderId])
       render :json => @photo
     else
-      render :json => @photos.errors, :status => 422
+      render :json => @photo.errors, :status => 422
     end
   end
     
@@ -47,5 +47,10 @@ class Api::PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     @photo.destroy
     render :json => @photo
-    end
+  end
+  
+  def random
+    offset = rand(Photo.count)
+    @photo = Photo.first(:offset => offset)
+  end
 end

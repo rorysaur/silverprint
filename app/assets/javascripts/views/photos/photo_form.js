@@ -117,12 +117,15 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
           Backbone.history.navigate("#/");
         } else if (view.photoType == "profile") {
           window.history.back();
-          // Backbone.history.navigate("#/users/" + view.model.id);
         }
       },
       
-      error: function (xhr) {
+      error: function (model, xhr) {
+        spinner.stop();
         console.log(xhr);
+        $error = $("<div>");
+        $error.addClass("alert alert-danger").html("You need to include a photo!");
+        view.$(".modal-body").prepend($error);
       }
     });
   },
