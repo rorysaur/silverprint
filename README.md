@@ -50,7 +50,13 @@
 
 [x] logout glyph
 
-[ ] sortable photos
+[x] sortable photos
+
+[ ] new photo modal
+
+[x] profile photo form toggle
+
+[ ] default profile photo
 
 [ ] followers/following views
 
@@ -62,6 +68,10 @@
 
 [ ] attachment validations
 
+[ ] root page
+
+[ ] choose file button
+
 [ ] brightness settings
 
 [ ] contrast settings
@@ -71,10 +81,6 @@
 [ ] 404 view
 
 [ ] new follows/likes notifications
-
-[ ] root page
-
-[ ] choose file button
 
 [ ] pagination
 

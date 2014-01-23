@@ -10,7 +10,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   },
   
   events: {
-    "click a#change-profile-pic" : "showProfilePicForm",   
+    "click #change-profile-pic" : "toggleProfilePicForm",   
     "click .follow" : "follow",
     "click .unfollow" : "unfollow",
     "click #grid" : "toggleGrid",
@@ -83,18 +83,6 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     return view;
   },
   
-  showProfilePicForm: function (event) {
-    event.preventDefault();
-    
-    var formView = new Silverprint.Views.ProfilePicForm({
-      model: this.model
-    });
-    
-    this.childViews.push(formView);
-    
-    this.$("#profile-pic").html(formView.render().$el);
-  },
-  
   template: JST["users/show"],
   
   toggleGrid: function () {
@@ -105,6 +93,23 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   toggleVertical: function () {
     this.mode = "vertical";
     this.render();
+  },
+  
+  toggleProfilePicForm: function (event) {
+    event.preventDefault();
+    
+    if (this.$("#profile-pic").find("form").length == 0) {
+      var formView = new Silverprint.Views.ProfilePicForm({
+        model: this.model
+      });
+    
+      this.childViews.push(formView);
+    
+      this.$("#profile-pic").html(formView.render().$el);
+    } else {
+      this.$("#profile-pic").empty();
+    }
+    
   },
   
   toggleSort: function (event) {
