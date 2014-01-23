@@ -3,7 +3,7 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
   initialize: function () {
     this.mode = "vertical";
     this.childViews = [];
-    this.listenTo(this.collection, "all", this.render)
+    this.listenTo(this.collection, "add remove reset destroy sync", this.render)
   },
   
   events: {

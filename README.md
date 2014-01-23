@@ -52,7 +52,7 @@
 
 [x] sortable photos
 
-[ ] new photo modal
+[x] new photo modal
 
 [x] profile photo form toggle
 

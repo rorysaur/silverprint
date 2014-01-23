@@ -14,6 +14,7 @@
 
 @import 'bootstrap';
 @import 'jquery.Jcrop';
+@import 'font-awesome';
 
 img {
   margin: auto;
@@ -22,6 +23,19 @@ img {
 body {
   color: #ddd;
   background-color: #222;
+}
+
+button.close {
+  color: #ddd;
+  opacity: 1;
+}
+
+i {
+  padding: 5px;
+}
+
+i.active {
+  color: #428bca;
 }
 
 .glyphicon-blue {
@@ -53,11 +67,6 @@ body {
 .photo-detail {
   margin-bottom: 40px;
 }
-
-//.sortable-container {
-//  padding-right: 0;
-//  padding-left: 0;
-//}
 
 .thumbnail {
   background-color: #333;

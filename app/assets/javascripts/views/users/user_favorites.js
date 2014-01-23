@@ -4,7 +4,7 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
     this.mode = "grid";
     this.childViews = [];
     this.listenTo(Silverprint.currentUser, "unlike", this.removePhoto);
-    this.listenTo(this.collection, "all", this.render);
+    this.listenTo(this.collection, "add remove reset destroy sync", this.render);
   },
   
   events: {

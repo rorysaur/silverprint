@@ -6,7 +6,36 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
   
   events: {
     "submit" : "submit",
-    "change input[type=file]" : "handleFile"
+    "change input[type=file]" : "handleFile",
+    "click #crop" : "crop",
+    "click .close" : "back"
+  },
+  
+  back: function (event) {
+    this.$("#newPhotoModal").modal("hide");
+    $(".modal-backdrop").remove();
+    window.history.back();
+  },
+  
+  crop: function (event) {
+    var view = this;
+    event && event.preventDefault();
+    
+    if (!view.cropping) {
+      view.jcropApi = $.Jcrop("#preview", {
+        onSelect: view.fillCoords,
+        setSelect: [0, 0, 300, 300],
+        aspectRatio: 1
+      });
+      view.$("#crop").addClass("active");
+      view.$("#choose").hide();
+    } else {
+      view.jcropApi.destroy();
+      view.$("#crop").removeClass("active");
+      view.$("#choose").show();
+    }
+    
+    view.cropping = !view.cropping;
   },
   
   fillCoords: function (coords) {
@@ -27,15 +56,11 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     reader.onload = function (e) {
       console.log(e.target.result);
       view.model.set({ photo: e.target.result });
+      view.$(".thumbnail").hide();
       view.$("#preview").attr("src", e.target.result);
-      view.$("#preview").show();
-      $(function ($) {
-        $("#preview").Jcrop({
-          onSelect: view.fillCoords,
-          setSelect: [ 0, 0, 300, 300],
-          aspectRatio: 1
-        });
-      });
+      view.$(".thumbnail").show();
+      view.$("#crop").show();
+      view.crop();
     }
     
     reader.onerror = function(error) {
@@ -48,15 +73,18 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
   
   render: function (speed) {
     var view = this;
-    view.$el.hide();
     
     var renderedContent = view.template({
       model: view.model
     });
-    
+ 
     view.$el.html(renderedContent);
-    view.$("#preview").hide();
-    view.$el.fadeIn(speed || "slow");
+    view.$(".thumbnail").hide();
+    view.$("#crop").hide();
+    view.$("#newPhotoModal").modal({
+      backdrop: "static"
+    });
+
     return view;
   },
   
@@ -70,6 +98,7 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     
     this.model.save({}, {
       success: function () {
+        this.$("#newPhotoModal").hide();
         Backbone.history.navigate("#/");
       },
       
@@ -81,5 +110,5 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
   
   tagName: "form",
   
-  template: JST["photos/form"]
+  template: JST["modals/new_photo"]
 });
