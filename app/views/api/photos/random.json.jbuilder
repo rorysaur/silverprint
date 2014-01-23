@@ -1,2 +1,3 @@
-json.(@photo, :id)
-json.photoUrl @photo.photo(:vertical)
+json.array! @photos do |photo|
+  json.photoUrl photo.photo(:vertical)
+end

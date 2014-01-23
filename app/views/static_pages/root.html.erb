@@ -19,18 +19,17 @@
 </div>
 
 <script>
-  $(function () {
-    var getRandomPhoto = function ($target) {
+  $(function () {    
+    function randInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    
+    var placeRandomPhoto = function ($target, photos) {
       $target.hide();
       var img = $("<img>");
       
-      $.ajax({
-        url: "/api/photos/random",
-        type: "GET",
-        success: function (photoAttrs) {
-          img.attr("src", photoAttrs.photoUrl);
-        }
-      });
+      var randPhotoUrl = photos[randInt(0, photos.length - 1)].photoUrl;
+      img.attr("src", randPhotoUrl);
       
       $target.html(img);
       $target.fadeIn(1800);
@@ -44,16 +43,22 @@
       "#square4"
     ];
     
-    squares.forEach(function (square) {
-      getRandomPhoto($(square));
+    $.ajax({
+      url: "/api/photos/random",
+      type: "GET",
+      success: function (photos) {
+        squares.forEach(function (square) {
+          placeRandomPhoto($(square), photos);
       
-      (function loop() {
-        var randInterval = (Math.random() * 5000) + 3000;
-        setTimeout(function () {
-          getRandomPhoto($(square));
-          loop();
-        }, randInterval);
-      }());
+          (function loop() {
+            var randInterval = (Math.random() * 5000) + 3000;
+            setTimeout(function () {
+              placeRandomPhoto($(square), photos);
+              loop();
+            }, randInterval);
+          }());
+        });
+      }
     });
     
   });

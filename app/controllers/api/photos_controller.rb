@@ -50,9 +50,7 @@ class Api::PhotosController < ApplicationController
   end
   
   def random
-    offset = rand(Photo.count)
-    @photo = Photo.first(:offset => offset)
-    
+    @photos = Photo.all
     render "api/photos/random"
   end
 end
