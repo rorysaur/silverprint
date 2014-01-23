@@ -1,20 +1,25 @@
-<div class="photo-jumbotron-row">
-  <div class="photo-jumbotron square large pull-left" id="square-large">
-  </div>
-  <div class="photo-jumbotron square small pull-left" id="square1">
-  </div>
-  <div class="photo-jumbotron square small pull-left" id="square2">
-  </div>
-  <div class="photo-jumbotron square small pull-left" id="square3">
-  </div>
-  <div class="photo-jumbotron square small pull-left" id="square4">
-  </div>
-</div>
-
 <div class="jumbotron">
+  <div class="photo-jumbotron-row">
+    <div class="photo-jumbotron square large pull-left" id="square-large">
+    </div>
+    <div class="photo-jumbotron square small pull-left" id="square1">
+    </div>
+    <div class="photo-jumbotron square small pull-left" id="square2">
+    </div>
+    <div class="photo-jumbotron square small pull-left" id="square3">
+    </div>
+    <div class="photo-jumbotron square small pull-left" id="square4">
+    </div>
+  </div>
+  
   <h1>silverprint.</h1>
   <p>
-    the web instagram you've been secretly wishing for.
+    the web instagram you've secretly been wishing for.
+    <%= form_for @user, :url => session_url do |f| %>
+      <%= f.hidden_field :username, :value => "demonic" %>
+      <%= f.hidden_field :password, :value => "password" %>
+      <%= f.submit "see the demo", :class => "btn btn-success btn-lg" %>
+    <% end %>
   </p>
 </div>
 
@@ -26,12 +31,12 @@
     
     var placeRandomPhoto = function ($target, photos) {
       $target.hide();
-      var img = $("<img>");
+      var $img = $("<img>");
       
       var randPhotoUrl = photos[randInt(0, photos.length - 1)].photoUrl;
-      img.attr("src", randPhotoUrl);
-      
-      $target.html(img);
+      $img.attr("src", randPhotoUrl);
+            
+      $target.html($img);
       $target.fadeIn(1800);
     };
         

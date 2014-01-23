@@ -2,7 +2,7 @@ Silverprint.Views.UsersIndex = Backbone.View.extend({
   
   initialize: function () {
     this.childViews = [];
-    this.listenTo(this.collection, "all", this.render);
+    this.listenTo(this.collection, "add remove reset destroy sync", this.render);
   },
   
   events: {

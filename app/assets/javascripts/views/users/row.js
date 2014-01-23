@@ -1,7 +1,7 @@
 Silverprint.Views.UserRow = Backbone.View.extend({
   
   initialize: function () {
-    this.listenTo(this.model, "all", this.render);
+    this.listenTo(this.model, "follow unfollow", this.render);
   },
   
   events: {

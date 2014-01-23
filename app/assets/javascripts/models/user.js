@@ -1,4 +1,8 @@
 Silverprint.Models.User = Backbone.Model.extend({
+  
+  isDemoUser: function () {
+    return this.get("username") == "demonic";
+  },
     
   isFollowedBy: function (otherUser) {
     var notFollowed = this.get("followers").every(function (follower) {

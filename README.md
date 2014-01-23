@@ -40,6 +40,7 @@
 - [x] root page
 - [ ] create demo account
 - [ ] demo walkthrough
+- [ ] grid view hover username
 - [ ] this readme
 - [ ] about/resume
 - [ ] 404/500 views
