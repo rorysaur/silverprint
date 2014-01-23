@@ -24,15 +24,18 @@
   </div>  
 <% } %>
 
-<div class="btn-group" data-toggle="buttons">
-  <label class="btn btn-link" id="grid">
-    <input type="radio">
+<div class="btn-group">
+  <button class="btn btn-link" id="grid">
     <span class="glyphicon glyphicon-th-large"></span>
-  </label>
-  <label class="btn btn-link" id="vertical">
-    <input type="radio">
+  </button>
+  <button class="btn btn-link" id="vertical">
     <span class="glyphicon glyphicon-align-justify"></span>
-  </label>
+  </button>
+  <% if (user.id == currentUser.id) { %>
+    <button class="btn btn-link" id="sort">
+      <span class="glyphicon glyphicon-move"></span>
+    </button>
+  <% } %>
 </div>
 
 <div id="photos">

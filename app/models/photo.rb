@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  attr_accessible :photo, :x, :y, :width, :height
+  attr_accessible :photo, :order_id, :x, :y, :width, :height
   attr_accessor :x, :y, :width, :height
   
   validates :user, :photo, :presence => true

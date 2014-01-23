@@ -54,10 +54,41 @@ body {
   margin-bottom: 40px;
 }
 
+//.sortable-container {
+//  padding-right: 0;
+//  padding-left: 0;
+//}
+
 .thumbnail {
   background-color: #333;
   border: none;
   display: inline-block;
   margin-bottom: 0px;
+}
+
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+li.sortable-element {
+  cursor: move;
+}
+
+ol.sortable li.placeholder {
+  position: relative;
+}
+
+ol.sortable li.placeholder:before {
+  position: absolute;
+  content: "";
+  width: 5px;
+  height: 100px;
+  background-color: #ddd;
 }
 

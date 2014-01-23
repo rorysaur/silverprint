@@ -67,6 +67,8 @@ Silverprint.Views.GridDetail = Backbone.View.extend({
     return view;
   },
   
+  tagName: "li",
+  
   template: JST["photos/grid_detail"],
   
   unlike: function (event) {

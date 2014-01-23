@@ -2,10 +2,11 @@ Silverprint.Views.Grid = Backbone.View.extend({
     
   initialize: function () {
     this.childViews = [];
+    this.listenTo(this.collection, "add", this.render);
   },
   
   attributes: {
-    "class" : "row"
+    "class" : "sortable list-unstyled"
   },
   
   events: {
@@ -17,7 +18,7 @@ Silverprint.Views.Grid = Backbone.View.extend({
   //   $("#photoModal" + photoId).modal();
   // },
   // 
-  lightboxTemplate: JST["modals/lightbox"],
+  // lightboxTemplate: JST["modals/lightbox"],
   
   removeChildViews: function () {
     _(this.childViews).each(function (childView, index) {
@@ -36,16 +37,19 @@ Silverprint.Views.Grid = Backbone.View.extend({
       
       view.childViews.push(photoView);
       view.$el.append(photoView.render().$el);
-      
-      var lightboxModal = view.lightboxTemplate({
-        photo: photo,
-        view: view
-      });
-      
-      view.$el.append(lightboxModal);
+
+      // var lightboxModal = view.lightboxTemplate({
+      //   photo: photo,
+      //   view: view
+      // });
+      // 
+      // view.$el.append(lightboxModal);
     });
-    
+  
     return view;
-  }
+  },
+  
+  tagName: "ol"
+  
   
 });

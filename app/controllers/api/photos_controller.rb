@@ -1,7 +1,7 @@
 class Api::PhotosController < ApplicationController
   
   before_filter :require_login
-  before_filter :only => [:destroy] do |controller|
+  before_filter :only => [:update, :destroy] do |controller|
     @photo = Photo.find(params[:id])
     controller.authenticate(@photo.user.id)
   end
@@ -23,7 +23,20 @@ class Api::PhotosController < ApplicationController
     @photo.width, @photo.height = params[:photo][:width], params[:photo][:height]
     @photo.photo = params[:photo][:photo]
     
+    @photo.order_id = Time.now.to_i
+    
     if @photo.save
+      render :json => @photo
+    else
+      render :json => @photos.errors, :status => 422
+    end
+  end
+  
+  def update
+    @photo = Photo.find(params[:id])
+    p params[:photo][:orderId]
+    
+    if @photo.update_attribute(:order_id, params[:photo][:orderId])
       render :json => @photo
     else
       render :json => @photos.errors, :status => 422

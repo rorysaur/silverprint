@@ -4,7 +4,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     this.childViews = [];
     this.mode = "grid";
     this.photos = this.model.get("photos");
-    this.listenTo(this.photos, "all", this.render);
+    this.listenTo(this.photos, "add", this.render);
     this.listenTo(this.model, "follow unfollow", this.render);
     this.listenTo(Silverprint.currentUser, "newProfilePic", this.render);
   },
@@ -14,7 +14,8 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     "click .follow" : "follow",
     "click .unfollow" : "unfollow",
     "click #grid" : "toggleGrid",
-    "click #vertical" : "toggleVertical"
+    "click #vertical" : "toggleVertical",
+    "click #sort" : "toggleSort"
   },
     
   follow: function (event) {
@@ -66,6 +67,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
       view.childViews.push(verticalView);
       view.$("#photos").html(verticalView.render().$el);
       view.$("#vertical").addClass("active");
+      view.$("#sort").hide();
       
     } else if (view.mode === "grid") {
       var gridView = new Silverprint.Views.Grid({
@@ -105,6 +107,26 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     this.render();
   },
   
+  toggleSort: function (event) {
+    event.preventDefault();
+      console.log("here");
+    
+    if (!this.sorting) {
+      this.$("ol").sortable({
+        onDrop: this.updateOrder.bind(this)
+      });
+      this.$("li").addClass("sortable-element");
+      this.$("#sort").addClass("glyphicon-blue");
+      this.sorting = true;
+    } else {
+      this.$el.sortable("disable");
+      this.$("li").removeClass("sortable-element");
+      this.$("#sort").removeClass("glyphicon-blue");
+      this.sorting = false;
+    }
+    
+  },
+  
   unfollow: function (event) {
     var view = this;
     event.preventDefault();
@@ -122,5 +144,39 @@ Silverprint.Views.UserShow = Backbone.View.extend({
         }
       });
     }
+  },
+  
+  updateOrder: function ($item) {
+    var view = this;
+    
+    $item.removeClass("dragged").removeAttr("style");
+    $("body").removeClass("dragging");
+    
+    var photoId = $item.find(".grid-photo").attr("data-id");
+    
+    var prevId = parseInt($item.prev().find(".grid-photo").attr("data-id"));
+    var nextId = parseInt($item.next().find(".grid-photo").attr("data-id"));
+    
+    var photo = view.photos.get(photoId);
+    var prevPhoto = view.photos.get(prevId);
+    var nextPhoto = view.photos.get(nextId);
+    
+    if (prevPhoto && nextPhoto) {
+      photo.set({ orderId: (prevPhoto.get("orderId") + nextPhoto.get("orderId")) / 2 });
+    } else if (prevPhoto) {
+      photo.set({ orderId: prevPhoto.get("orderId") - 1});
+    } else if (nextPhoto) {
+      photo.set({ orderId: nextPhoto.get("orderId") + 1});
+    }
+    
+    photo.save({}, {
+      success: function () {
+        view.photos.add(photo, { merge: true });
+      },
+      
+      error: function (obj) {
+        console.log(obj);
+      }
+    });
   }
 });

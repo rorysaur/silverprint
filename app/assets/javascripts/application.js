@@ -26,3 +26,4 @@
 //= require jquery.serializeJSON
 //= require jquery.Jcrop
 //= require screenfull
+//= require jquery-sortable
