@@ -4,8 +4,15 @@ class User < ActiveRecord::Base
   
   before_validation :reset_session_token, :on => :create
   
-  validates :username, :password_digest, :session_token, :email, :presence => true
-  validates :username, :email, :session_token, :uniqueness => true
+  validates :username, :password_digest, :session_token, :presence => true
+  validates :username, :session_token, :uniqueness => true
+  
+  validates(
+    :email, :presence => true,
+    :uniqueness => true,
+    :on => :create
+  )
+  
   validates(
     :password,
     :presence => true,
