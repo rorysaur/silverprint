@@ -18,7 +18,9 @@ Silverprint.Views.UsersIndex = Backbone.View.extend({
   
   render: function (speed) {
     var view = this;
-    view.$el.hide();
+    if (!view.rendered) {
+      view.$el.hide();
+    }
     
     var renderedContent = view.template({
       users: view.collection
@@ -34,6 +36,7 @@ Silverprint.Views.UsersIndex = Backbone.View.extend({
       view.$("table").append(userView.render().$el);
     });
     
+    view.rendered = true;
     view.$el.fadeIn(speed || "slow");
     return view;
   },
