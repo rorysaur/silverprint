@@ -2,7 +2,6 @@ Silverprint.Routers.Router = Backbone.Router.extend({
   
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
-    // this.listenTo(Silverprint.dispatcher, "fullscreen", this.fullscreen);
   },
   
   routes: {
@@ -10,6 +9,7 @@ Silverprint.Routers.Router = Backbone.Router.extend({
     "users": "usersIndex",
     "users/:id": "userShow",
     "favorites": "favorites",
+    "profile": "profilePicNew",
     "new": "photoNew",
   },
   
@@ -50,25 +50,30 @@ Silverprint.Routers.Router = Backbone.Router.extend({
     });
   },
   
-  // fullscreen: function () {
-  //   if (screenfull.enabled) {
-  //     console.log("fullscreen!");
-  //     screenfull.request();
-  //   }
-  // },
-  
   photoNew: function () {
     var router = this;
     var photo = new Silverprint.Models.Photo();
     
     var photoFormView = new Silverprint.Views.PhotoForm({
-      model: photo
+      model: photo,
+      photoType: "photo"
     });
     
     router._swapView(photoFormView);
     
     $(".nav .glyphicon").removeClass("glyphicon-red");
     $(".nav .glyphicon-camera").addClass("glyphicon-red");
+  },
+  
+  profilePicNew: function () {
+    var router = this;
+    
+    var photoFormView = new Silverprint.Views.PhotoForm({
+      model: Silverprint.currentUser,
+      photoType: "profile"
+    });
+    
+    router._swapView(photoFormView);
   },
   
   usersIndex: function () {

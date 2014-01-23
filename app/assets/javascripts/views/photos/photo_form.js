@@ -1,5 +1,9 @@
 Silverprint.Views.PhotoForm = Backbone.View.extend({
   
+  initialize: function (options) {
+    this.photoType = options.photoType;
+  },
+  
   attributes: {
     "enctype" : "multipart/form-data"
   },
@@ -57,7 +61,11 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     var reader = new FileReader();
     reader.onload = function (e) {
       console.log(e.target.result);
-      view.model.set({ photo: e.target.result });
+      if (view.photoType == "photo") {
+        view.model.set({ photo: e.target.result }); 
+      } else if (view.photoType == "profile") {
+        view.model.set({ profile_pic: e.target.result })
+      }
       view.$(".thumbnail").hide();
       view.$("#preview").attr("src", e.target.result);
       view.$(".thumbnail").show();
@@ -105,7 +113,12 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
         spinner.stop();
         view.$("#newPhotoModal").hide();
         $(".modal-backdrop").remove();
-        Backbone.history.navigate("#/");
+        if (view.photoType == "photo") {
+          Backbone.history.navigate("#/");
+        } else if (view.photoType == "profile") {
+          window.history.back();
+          // Backbone.history.navigate("#/users/" + view.model.id);
+        }
       },
       
       error: function (xhr) {

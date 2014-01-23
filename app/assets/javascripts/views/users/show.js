@@ -10,7 +10,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   },
   
   events: {
-    "click #change-profile-pic" : "toggleProfilePicForm",
+    // "click #change-profile-pic" : "profilePicForm",
     "click .show-follow" : "showUsers",
     "click .follow" : "follow",
     "click .unfollow" : "unfollow",
@@ -35,6 +35,12 @@ Silverprint.Views.UserShow = Backbone.View.extend({
         });
       }
     });
+  },
+  
+  profilePicForm: function (event) {
+    event.preventDefault();
+    console.log("profile pic!");
+    Backbone.history.navigate("#profile");
   },
   
   removeChildViews: function () {
@@ -133,23 +139,6 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   toggleVertical: function () {
     this.mode = "vertical";
     this.render();
-  },
-  
-  toggleProfilePicForm: function (event) {
-    event.preventDefault();
-    
-    if (this.$("#profile-pic").find("form").length == 0) {
-      var formView = new Silverprint.Views.ProfilePicForm({
-        model: this.model
-      });
-    
-      this.childViews.push(formView);
-    
-      this.$("#profile-pic").html(formView.render().$el);
-    } else {
-      this.$("#profile-pic").empty();
-    }
-    
   },
   
   toggleSort: function (event) {

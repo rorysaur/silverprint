@@ -14,7 +14,7 @@
      
       <h1><%= user.get('username') %></h1>
       
-      <div class="col-xs-offset-7">
+      <div class="col-xs-offset-6">
         <h5><%= user.get("photos").length %> posts</h5>
         <h5><a class="show-follow" id="num-followers">
           <%= user.get("followers").length %> followers
@@ -47,7 +47,7 @@
           <span class="glyphicon glyphicon-move"></span>
         </button>
         <button class="btn btn-link" id="change-profile-pic">
-          <span class="glyphicon glyphicon-picture"></span>
+          <a href="#profile"><span class="glyphicon glyphicon-picture"></span></a>
         </button>
       <% } %>
     </div>
