@@ -23,6 +23,8 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     
     if (!view.cropping) {
       view.jcropApi = $.Jcrop("#preview", {
+        boxWidth: 500,
+        boxHeight: 500,
         onSelect: view.fillCoords,
         setSelect: [0, 0, 300, 300],
         aspectRatio: 1
@@ -89,16 +91,20 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
   },
   
   submit: function (event) {
+    var view = this;
     event.preventDefault();
     console.log("submitting...");
     
-    var attrs = this.$el.serializeJSON();
-    this.model.set(attrs.photo);
-    console.log(this.model.attributes);
+    var attrs = view.$el.serializeJSON();
+    view.model.set(attrs.photo);
+    console.log(view.model.attributes);
     
-    this.model.save({}, {
+    var spinner = new Spinner().spin(view.$(".thumbnail")[0]);
+    view.model.save({}, {
       success: function () {
-        this.$("#newPhotoModal").hide();
+        spinner.stop();
+        view.$("#newPhotoModal").hide();
+        $(".modal-backdrop").remove();
         Backbone.history.navigate("#/");
       },
       

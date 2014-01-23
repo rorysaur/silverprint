@@ -27,3 +27,4 @@
 //= require jquery.Jcrop
 //= require screenfull
 //= require jquery-sortable
+//= require spin

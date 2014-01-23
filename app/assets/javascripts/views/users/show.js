@@ -10,7 +10,8 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   },
   
   events: {
-    "click #change-profile-pic" : "toggleProfilePicForm",   
+    "click #change-profile-pic" : "toggleProfilePicForm",
+    "click .show-follow" : "showUsers",
     "click .follow" : "follow",
     "click .unfollow" : "unfollow",
     "click #grid" : "toggleGrid",
@@ -82,6 +83,45 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     view.$el.fadeIn(speed || "slow");
     return view;
   },
+  
+  showUsers: function (event) {
+    var view = this;
+    event.preventDefault();
+    view.$("#sort").hide();
+    view.$("#photos").hide();
+    
+    var renderedTable = view.showUsersTemplate();
+    view.$("#photos").html(renderedTable);
+    
+    var allUsers = new Silverprint.Collections.AllUsers();
+    
+    allUsers.fetch({
+      success: function () {
+        if ($(event.currentTarget).attr("id") == "num-followers") {
+          var users = allUsers.models.filter(function (user) {
+            return view.model.isFollowedBy(user);
+          });
+        } else if ($(event.currentTarget).attr("id") == "num-following") {
+          var users = allUsers.models.filter(function (user) {
+            return user.isFollowedBy(view.model);
+          });
+        }
+        
+        _(users).each(function (user) {
+          var userView = new Silverprint.Views.UserRow({
+            model: user
+          });
+          view.childViews.push(userView);
+          view.$("table").append(userView.render().$el);
+        });
+        
+        view.$("#photos").fadeIn("slow");
+        return view;
+      }
+    });
+  },
+  
+  showUsersTemplate: JST["users/index"],
   
   template: JST["users/show"],
   

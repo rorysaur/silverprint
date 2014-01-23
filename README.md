@@ -58,30 +58,28 @@
 
 [x] default profile photo
 
-[ ] followers/following views
+[x] followers/following views
 
-[ ] loading indicator
+[x] loading spinner
 
 [ ] error messages/alerts
 
-[ ] pingdom
-
-[ ] attachment validations
+[x] attachment validations
 
 [ ] root page
 
 [ ] choose file button
 
-[ ] brightness settings
-
-[ ] contrast settings
+[ ] brightness/contrast enhance
 
 [ ] photo effects
 
 [ ] 404 view
 
-[ ] new follows/likes notifications
-
 [ ] pagination
 
 [ ] friendlyId
+
+[ ] infinite scroll
+
+[ ] new follows/likes notifications

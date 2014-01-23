@@ -49,8 +49,10 @@ Silverprint.Views.ProfilePicForm = Backbone.View.extend({
     event.preventDefault();
     console.log("submitting...");
     
+    var spinner = new Spinner().spin($(".pull-left.photo-container")[0]);
     view.model.save({}, {
       success: function (model, response) {
+        spinner.stop();
         Silverprint.currentUser.set({ profilePicUrl: response.profilePicUrl });
         Silverprint.currentUser.trigger("newProfilePic");
       },

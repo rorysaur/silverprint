@@ -15,6 +15,9 @@ class Photo < ActiveRecord::Base
     :processors => [:cropper]
   )
   
+  validates_attachment(:photo, :presence => true,
+                       :size => { :in => 0..4096.kilobytes })
+  
   belongs_to :user
   
   has_many :likes

@@ -11,20 +11,25 @@
                             { className: "img-circle profile-pic" }) %>
         <% } %>
       </div>
+     
       <h1><%= user.get('username') %></h1>
-  
-      <div id="follow">
-        <% if (user.isFollowedBy(currentUser)) { %>
-          <button class="unfollow btn btn-default btn-xs">unfollow</button>
-        <% } else if (user.id != currentUser.id) { %>
-          <button class="follow btn btn-default btn-xs">follow</button>
-        <% } %>
-      </div>
+      
       <div class="col-xs-offset-7">
-      <h4><%= user.get("photos").length %> posts</h4>
-      <h4><%= user.get("followers").length %> followers</h4>
-      <h4><%= user.get("following").length %> following</h4>
-    </div>
+        <h5><%= user.get("photos").length %> posts</h5>
+        <h5><a class="show-follow" id="num-followers">
+          <%= user.get("followers").length %> followers
+        </ba></h5>
+        <h5><a class="show-follow" id="num-following">
+          <%= user.get("following").length %> following
+        </a></h5>
+        <div id="follow">
+          <% if (user.isFollowedBy(currentUser)) { %>
+            <button class="unfollow btn btn-default btn-xs">unfollow</button>
+          <% } else if (user.id != currentUser.id) { %>
+            <button class="follow btn btn-default btn-xs">follow</button>
+          <% } %>
+        </div>
+      </div>
     </div>
   
     <div id="profile-pic" class="photo-container">
