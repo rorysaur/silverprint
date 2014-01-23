@@ -56,7 +56,7 @@
 
 [x] profile photo form toggle
 
-[ ] default profile photo
+[x] default profile photo
 
 [ ] followers/following views
 
