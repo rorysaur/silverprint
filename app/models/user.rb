@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :password, :profile_pic
+  attr_accessible :username, :password, :email, :profile_pic
   attr_reader :password
   
   before_validation :reset_session_token, :on => :create
   
-  validates :username, :password_digest, :session_token, :presence => true
-  validates :username, :session_token, :uniqueness => true
+  validates :username, :password_digest, :session_token, :email, :presence => true
+  validates :username, :email, :session_token, :uniqueness => true
   validates(
     :password,
     :presence => true,

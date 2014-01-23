@@ -1,14 +1,21 @@
 <h1>Log in</h1>
 
 <%= form_for @user, :url => session_url do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-  <br>
-  
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <br>
-  
-  <%= f.submit "Log in", :class => "btn btn-default" %>
-  
+  <div class="row">
+    <div class="form-group col-xs-4">
+      <%= f.label :username %>
+      <%= f.text_field :username, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-4">
+      <%= f.label :password %>
+      <%= f.password_field :password, :class => "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      <%= f.submit "Log in", :class => "btn btn-default btn-sm" %>
+    </div>
+  </div>
 <% end %>

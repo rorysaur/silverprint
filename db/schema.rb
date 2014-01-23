@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140122235738) do
+ActiveRecord::Schema.define(:version => 20140123100335) do
 
   create_table "follows", :force => true do |t|
     t.integer  "followee_id", :null => false
@@ -54,8 +54,10 @@ ActiveRecord::Schema.define(:version => 20140122235738) do
     t.string   "profile_pic_content_type"
     t.integer  "profile_pic_file_size"
     t.datetime "profile_pic_updated_at"
+    t.string   "email"
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["session_token"], :name => "index_users_on_session_token", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 

@@ -38,7 +38,7 @@
 - [x] attachment validations
 - [ ] root page
 - [ ] 404/500 views
-- [ ] style forms
+- [x] style forms
 - [ ] demo account
 - [ ] choose file button
 - [ ] brightness/contrast enhance
