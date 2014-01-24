@@ -4,7 +4,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     this.childViews = [];
     this.mode = "grid";
     this.photos = this.model.get("photos");
-    // this.listenTo(this.photos, "add remove sync", this.render);
+    this.listenTo(this.photos, "add remove sync", this.render);
     this.listenTo(this.model, "follow unfollow change:photos", this.render);
     this.listenTo(Silverprint.currentUser, "newProfilePic", this.render);
   },

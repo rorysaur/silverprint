@@ -2,7 +2,7 @@ Silverprint.Views.Grid = Backbone.View.extend({
     
   initialize: function () {
     this.childViews = [];
-    this.listenTo(this.collection, "add", this.render);
+    this.listenTo(this.collection, "add remove sync", this.render);
   },
   
   attributes: {

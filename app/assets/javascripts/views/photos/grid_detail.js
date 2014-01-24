@@ -2,7 +2,7 @@ Silverprint.Views.GridDetail = Backbone.View.extend({
   
   initialize: function (options) {
     this.userAttrs = options.userAttrs;
-    this.listenTo(this.model, "like unlike", this.render)
+    this.listenTo(this.model, "like unlike destroy", this.render)
   },
   
   attributes: {
