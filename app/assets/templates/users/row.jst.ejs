@@ -1,4 +1,4 @@
-<td>
+<td class="col-xs-10">
   <% if (user.get('profilePicUrl') ==
           "/profile_pics/thumbnail/missing.png") { %>
     <%= view.imageTag("http://www.placekitten.com/240/240",
@@ -7,10 +7,14 @@
     <%= view.imageTag(user.get("profilePicUrl"),
                       { className: "img-circle profile-pic-thumb" }) %>
   <% } %>
-  <%= view.linkTo(user.get('username'), "#users/" + user.id) %>
-  <% if (user.isFollowedBy(Silverprint.currentUser)) { %>
-    <button class="unfollow btn btn-default btn-xs">unfollow</button>
-  <% } else if (user.id != Silverprint.currentUser.id) { %>
-    <button class="follow btn btn-default btn-xs">follow</button>
-  <% } %>
+  <%= view.linkTo(user.escape('username'), "#users/" + user.id) %>
+</td>
+<td class="col-xs-2">
+  <div style="float: right;">
+    <% if (user.isFollowedBy(Silverprint.currentUser)) { %>
+      <button class="unfollow btn btn-default btn-xs">unfollow</button>
+    <% } else if (user.id != Silverprint.currentUser.id) { %>
+      <button class="follow btn btn-default btn-xs">follow</button>
+    <% } %>
+  </div>
 </td>

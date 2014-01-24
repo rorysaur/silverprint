@@ -55,10 +55,11 @@
 - [x] root page
 - [x] create demo account
 - [x] add photo from url
-- [ ] demo walkthrough
+- [x] demo walkthrough
+
+
 - [ ] grid view hover username
 - [ ] about page
-
 - [ ] this readme
 - [ ] 404/500 views
 - [ ] choose file button
