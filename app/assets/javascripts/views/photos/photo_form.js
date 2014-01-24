@@ -12,9 +12,10 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     "submit" : "submit",
     "change input[type=file]" : "handleFile",
     "click #crop" : "crop",
+    "click #preview-url" : "handleUrl",
     "click .close" : "back"
   },
-  
+    
   back: function (event) {
     this.$("#newPhotoModal").modal("hide");
     $(".modal-backdrop").remove();
@@ -34,11 +35,11 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
         aspectRatio: 1
       });
       view.$("#crop").addClass("active");
-      view.$("#choose").hide();
+      view.$(".photo-input").hide();
     } else {
       view.jcropApi.destroy();
       view.$("#crop").removeClass("active");
-      view.$("#choose").show();
+      view.$(".photo-input").show();
     }
     
     view.cropping = !view.cropping;
@@ -79,6 +80,28 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     }
     
     reader.readAsDataURL(file);
+  },
+  
+  handleUrl: function (event) {
+    event.preventDefault();
+    var view = this;
+    
+    var url = $("#url").val();
+    
+    if (view.photoType == "photo") {
+      view.model.set({ photo_url: url }); 
+    } else if (view.photoType == "profile") {
+      view.model.set({ profile_pic_url: url })
+    }
+      
+    view.$(".thumbnail").hide();
+    view.$("#preview").attr("src", url);
+    view.$(".thumbnail").show();
+
+  },
+  
+  popovers: {
+    
   },
   
   render: function (speed) {
@@ -124,7 +147,7 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
         spinner.stop();
         console.log(xhr);
         $error = $("<div>");
-        $error.addClass("alert alert-danger").html("You need to include a photo!");
+        $error.addClass("alert alert-danger").html("Whoops! Something went wrong.");
         view.$(".modal-body").prepend($error);
       }
     });

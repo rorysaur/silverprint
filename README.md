@@ -38,13 +38,13 @@
 - [x] attachment validations
 - [x] style forms
 - [x] root page
-- [ ] create demo account
+- [x] create demo account
+- [x] add photo from url
 - [ ] demo walkthrough
 - [ ] grid view hover username
 - [ ] this readme
 - [ ] about/resume
 - [ ] 404/500 views
-- [ ] add photo from url
 - [ ] choose file button
 - [ ] brightness/contrast enhance
 - [ ] photo effects

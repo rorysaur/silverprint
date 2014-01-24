@@ -5,6 +5,10 @@ class Api::PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     controller.authenticate(@photo.user.id)
   end
+  # before_filter :only => [:destroy] do |controller|
+  #   @photo = Photo.find(params[:id])
+  #   controller.check_demo_user(@photo)
+  # end
   
   def index
     @photos = User.includes(:photos).find(params[:user_id]).photos

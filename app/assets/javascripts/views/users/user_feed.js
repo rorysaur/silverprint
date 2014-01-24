@@ -12,6 +12,11 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
     "click #refresh" : "refresh"
   },
   
+  popovers: {
+    feedIntro: "", // like or fullscreen
+    feedToggle: "", // plus fullscreen
+  },
+  
   removeChildViews: function () {
     _(this.childViews).each(function (childView, index) {
       console.log("removing child #" + index + "...");

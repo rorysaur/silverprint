@@ -2,14 +2,26 @@
     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-body">
-      <div>
-        <button type="button" class="close"
-                aria-hidden="true">&times;</button>
-      </div>
-      <div>
-        <input type="file" id="choose"
-                name="photo[photo]" accept="image/*">
+        <div>
+          <button type="button" class="close"
+                  aria-hidden="true">&times;</button>
+        </div>
+        <div class="photo-input">
+        <div>
+          <input type="file" id="choose"
+                  name="photo[photo]" accept="image/*">
         
+        </div>
+      
+        -OR-
+      
+        <div class="form-group">
+          <label for="url">enter a url:</label>
+          <input type="text" id="url" class="form-control">
+          <button class="btn btn-default btn-sm" id="preview-url">
+            preview
+          </button>
+        </div>
       </div>
       
       <div>

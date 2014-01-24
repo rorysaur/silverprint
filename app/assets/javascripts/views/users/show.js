@@ -10,7 +10,6 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   },
   
   events: {
-    // "click #change-profile-pic" : "profilePicForm",
     "click .show-follow" : "showUsers",
     "click .follow" : "follow",
     "click .unfollow" : "unfollow",
@@ -35,6 +34,11 @@ Silverprint.Views.UserShow = Backbone.View.extend({
         });
       }
     });
+  },
+  
+  popovers: {
+    showSort: "",
+    profilePic: "",
   },
   
   profilePicForm: function (event) {

@@ -21,9 +21,9 @@ Silverprint.Models.User = Backbone.Model.extend({
   },
   
   toJSON: function () {
-    var data = _.clone(this.attributes);
-    data.photos = this.get('photos').toJSON();
-    return data;
+    var attrs = _.clone(this.attributes);
+    attrs.photos = this.get('photos').toJSON();
+    return { user: attrs };
   },
   
   validate: function (attrs) {  },

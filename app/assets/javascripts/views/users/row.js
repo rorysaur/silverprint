@@ -17,7 +17,7 @@ Silverprint.Views.UserRow = Backbone.View.extend({
     });
     
     follow.save({}, {
-      success: function () {
+      success: function (follow) {
         view.model.fetch({
           success: function () {
             view.model.trigger("follow");

@@ -1,6 +1,10 @@
+require 'open-uri'
+
 class User < ActiveRecord::Base
-  attr_accessible :username, :password, :email, :profile_pic
+  attr_accessible :username, :password, :email, :profile_pic, :x, :y, :width,
+                  :height
   attr_reader :password
+  attr_accessor :x, :y, :width, :height
   
   before_validation :reset_session_token, :on => :create
   
@@ -30,7 +34,10 @@ class User < ActiveRecord::Base
     :convert_options => {
       :all => "-colorspace Gray"
     }
+    # :processors => [:cropper]
   )
+  
+  validates_attachment(:profile_pic, :size => { :in => 0..4096.kilobytes })
 
   has_many :photos
   
@@ -87,11 +94,31 @@ class User < ActiveRecord::Base
         .find(id)
   end
   
+  def x=(x)
+    @x = x.to_i
+  end
+  
+  def y=(y)
+    @y = y.to_i
+  end
+  
+  def width=(width)
+    @width = width.to_i
+  end
+  
+  def height=(height)
+    @height = height.to_i
+  end
+  
   def feed_photos
     self.following.map(&:photos)
                   .flatten
                   .concat(self.photos)
                   .sort_by(&:created_at).reverse
+  end
+  
+  def is_demo_user?
+    self.username == "demonic"
   end
   
   def is_following?(other_user)
@@ -109,6 +136,10 @@ class User < ActiveRecord::Base
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
+  end
+  
+  def photo_from_url(url)
+    self.profile_pic = URI.parse(url)
   end
   
   def reset_session_token

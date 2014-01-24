@@ -42,8 +42,16 @@ class Api::UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
+    # @user.x, @user.y = params[:user][:x], params[:user][:y]
+#     @user.width, @user.height = params[:user][:width], params[:user][:height]
     
-    if @user.update_attributes(params[:user])
+    if params[:user][:profile_pic].nil? && params[:user][:profile_pic_url]
+      @user.photo_from_url(params[:user][:profile_pic_url])
+    elsif params[:user][:profile_pic]
+      @user.profile_pic = params[:user][:profile_pic]
+    end
+    
+    if @user.save
       @user = User.with_show_data(params[:id])
       @photos = @user.photos.sort_by(&:created_at).reverse
     

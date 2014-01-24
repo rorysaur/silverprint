@@ -9,6 +9,10 @@ Silverprint.Views.UsersIndex = Backbone.View.extend({
     
   },
   
+  popovers: {
+    indexRow: "",
+  },
+  
   removeChildViews: function () {
     _(this.childViews).each(function (childView, index) {
       console.log("removing child #" + index + "...");
