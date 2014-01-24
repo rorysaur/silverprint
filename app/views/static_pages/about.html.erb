@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+      <h1>about</h1>
+      
+      <p class="about-text" style="margin-top: 30px">
+        I'm Rory.
+      </p>
+      
+      <div class="photo-container" style="margin-bottom: 30px">
+        <img class="img-circle"
+              style="width: 200px; height: 200px"
+              src="/assets/profile.png">
+      </div>
+
+      <p class="about-text">
+        <strong>silverprint</strong> is an app I made to demonstrate my skills 
+        in web development. I made it using Ruby on Rails, JavaScript, 
+        jQuery, Backbone, Bootstrap, HTML and CSS. silverprint is my take on
+        Instagram, an app that is dear to my heart.
+      </p>
+      
+      <p class="about-text">
+        See the code on 
+        <a href="https://github.com/rorysaur/silverprint">Github.</a>
+        <!-- ruby rails jquery backbone html5 bootstrap -->
+      </p>
+      
+      <p class="about-text">
+        I love working on this app because it lets me be myself as a developer. 
+        I'm a perfectionist. Quality, elegance, and the user
+        experience are everything to me. I care about how many clicks it takes 
+        to get from one view to another, and whether things are fading in at
+        the right speed. I want my users to forget that they're looking at an
+        app or a website.
+      </p>
+      
+      <p class="about-text">
+        This takes time to achieve. I work in iterations, keeping things simple 
+        and making sure they're functional before moving on to new features. I 
+        believe in testing. I like debugging. It matters to me that my code is 
+        clean, expressive and easy to read.
+      </p>
+      
+      <p class="about-text">
+        If this sounds like the kind of person you might want to work with, 
+        <span id="email"></span>.
+      </p>
+      
+  </div>
+</div>
+
+<script>
+  var me = "ou.rory";
+  var host = "gmail.com";
+  var $email = $("<a>").attr("href", "mailto: " + me + "@" + host);
+  $email.text("we should talk");
+  $("#email").html($email);
+</script>

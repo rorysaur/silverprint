@@ -15,7 +15,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">silverprint</a>
+      <% href = current_user ? "#" : "/" %>
+      <a class="navbar-brand" href="<%= href %>">silverprint</a>
     </div>
 
     <div class="collapse navbar-collapse" id="main-navbar">
@@ -36,6 +37,8 @@
           <li><a id="fullscreen">
             <span class="glyphicon glyphicon-fullscreen"></span>
           </a></li>
+        <% else %>
+          <li><a href="/about">about</a></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
