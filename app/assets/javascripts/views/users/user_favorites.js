@@ -12,6 +12,13 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
     "click #vertical" : "toggleVertical"
   },
   
+  demoFlash: function () {
+    var flash = $("<div>");
+    flash.addClass("alert alert-info");
+    flash.text(JST["alerts/favorites"]());
+    return flash;
+  },
+  
   removeChildViews: function () {
     _(this.childViews).each(function (childView, index) {
       console.log("removing child #" + index + "...");
@@ -30,7 +37,7 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
     });
   },
   
-  render: function (speed) {
+  render: function (options) {
     var view = this;
     view.$el.hide();
     
@@ -61,8 +68,13 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
       view.$("#grid").addClass("active");
     }
     
+    if (view.flash) {
+      view.$el.prepend(view.flash);
+    }
+
+    view.$el.fadeIn("slow");
+    
     view.rendered = true;
-    view.$el.fadeIn(speed || "slow");
     return view;
   },
   

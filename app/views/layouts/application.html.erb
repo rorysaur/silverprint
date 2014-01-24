@@ -61,16 +61,14 @@
   
   
   <div class="container">
-    <% if flash[:failure] %>
-      <div class="row">
+    <div class="row">
+      <% if flash[:failure] %>
         <div class="alert alert-danger col-xs-4">
           <%= flash[:failure] %> 
         </div>
-      </div>
-    <% end %>
+      <% end %>
   
-    <% if flash[:errors] %>
-      <div class="row">
+      <% if flash[:errors] %>
         <div class="alert alert-danger col-xs-4">
           <ul>
             <% flash[:errors].try(:each) do |error| %>
@@ -78,8 +76,8 @@
             <% end %>
           </ul>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   
     <div>
       <%= yield %>

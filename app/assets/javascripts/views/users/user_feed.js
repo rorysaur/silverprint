@@ -7,49 +7,16 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
   },
   
   events: {
-    "click .popover-content" : "dismissPopovers",
     "click #grid" : "toggleGrid",
     "click #vertical" : "toggleVertical",
     "click #refresh" : "refresh"
   },
   
-  showPopovers: function () {
-    var view = this;
-    console.log("showing popovers...");
-    _(view.popoverTargets()).each(function ($target, index) {
-      console.log($target);
-      $target.popover({
-        placement: "bottom",
-        content: view.popovers[index]
-      });
-      $target.popover("show");
-    });
-        
-  },
-  
-  dismissPopovers: function (event) {
-    var view = this;
-    event.preventDefault();
-    
-    _(view.popoverTargets()).each(function ($target, index) {
-      $target.popover("destroy");
-    });
-  },
-  
-  popovers: [
-    "This is your feed page. Toggle between vertical and grid view styles, refresh the feed, or browse in fullscreen mode (might not work on all browsers). (Click to dismiss all)",
-    "Like or fullscreen individual photos.",
-    "Check out your profile page."
-  ],
-  
-  popoverTargets: function () {
-    var targets = [
-      $("#toggle-view"),
-      $(".btn-group-vertical").first(),
-      $(".username")
-    ];
-    
-    return targets;
+  demoFlash: function () {
+    var flash = $("<div>");
+    flash.addClass("alert alert-info");
+    flash.text(JST["alerts/feed"]());
+    return flash;
   },
   
   refresh: function () {
@@ -64,9 +31,9 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
     });
   },
   
-  render: function (speed) {
+  render: function (options) {
     var view = this;
-    console.log("rendering...");
+    console.log("rendering feed...");
     view.$el.hide();
     
     var renderedContent = view.template({
@@ -75,6 +42,12 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
     });
     
     view.$el.html(renderedContent);
+    
+    if (view.collection.length == 0) {
+      var flash = $("<div>").addClass("alert alert-info");
+      flash.text("No photos to show. Follow some users to see photos in your feed!")
+      view.$el.prepend(flash);
+    }
     
     if (view.mode === "vertical") {
       var verticalView = new Silverprint.Views.Vertical({
@@ -96,13 +69,14 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
       view.$("#grid").addClass("active");
     }
     
-    view.$el.fadeIn(speed || "slow");
-    
-    if (Silverprint.currentUser.isDemoUser()) {
-      view.showPopovers();
+    if (view.flash) {
+      console.log("flash");
+      view.$el.prepend(view.flash);
     }
     
-    view.rendered = true;
+    view.$el.fadeIn("slow");
+    
+    // view.rendered = true;
     return view;
   },
   

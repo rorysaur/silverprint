@@ -115,6 +115,9 @@ Silverprint.Routers.Router = Backbone.Router.extend({
     this._currentView && this._currentView.remove() &&
         this._currentView.childViews && this._currentView.removeChildViews();
     this._currentView = view;
+    if (Silverprint.currentUser.isDemoUser()) {
+      view.flash = view.demoFlash();
+    }
     this.$rootEl.html(view.render().$el);
   }
 });

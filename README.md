@@ -57,8 +57,11 @@
 - [x] add photo from url
 - [x] demo walkthrough
 
-
+1.24.2014
+- [x] redo demo walkthrough
+- [x] empty feed alert
 - [ ] grid view hover username
+- [ ] fix sorting
 - [ ] about page
 - [ ] this readme
 - [ ] 404/500 views
