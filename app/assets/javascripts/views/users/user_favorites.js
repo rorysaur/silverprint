@@ -32,9 +32,7 @@ Silverprint.Views.UserFavorites = Backbone.View.extend({
   
   render: function (speed) {
     var view = this;
-    if (!view.rendered) {
-      view.$el.hide();
-    }
+    view.$el.hide();
     
     var renderedContent = view.template({
       photos: view.collection,

@@ -86,9 +86,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   render: function (speed) {
     console.log("rendering");
     var view = this;
-    if (!view.rendered) {
-      view.$el.hide();
-    }
+    view.$el.hide();
     
     var renderedContent = view.template({
       user: view.model,

@@ -67,9 +67,7 @@ Silverprint.Views.UserFeed = Backbone.View.extend({
   render: function (speed) {
     var view = this;
     console.log("rendering...");
-    if (!view.rendered) {
-      view.$el.hide();
-    }
+    view.$el.hide();
     
     var renderedContent = view.template({
       photos: view.collection,
