@@ -4,14 +4,25 @@
 
 #### TO DO:
 
+1.15.2104
 - [x] auth
+
+1.16.2014
+- [x] rails app
+
+1.17.2014
+- [x] rails api
 - [x] users index
+
+1.20.2014
 - [x] user show
 - [x] follows
 - [x] likes
 - [x] feed
 - [x] favorites
 - [x] photo upload
+
+1.21.2014
 - [x] profile pic upload
 - [x] recursive view removal
 - [x] grid view
@@ -21,6 +32,8 @@
 - [x] glyphicons
 - [x] feed refresh
 - [x] domain name
+
+1.22.2014
 - [x] fix unfollow
 - [x] button groups
 - [x] thumbnail
@@ -37,13 +50,16 @@
 - [x] error messages/alerts
 - [x] attachment validations
 - [x] style forms
+
+1.23.2014
 - [x] root page
 - [x] create demo account
 - [x] add photo from url
 - [ ] demo walkthrough
 - [ ] grid view hover username
+- [ ] about page
+
 - [ ] this readme
-- [ ] about/resume
 - [ ] 404/500 views
 - [ ] choose file button
 - [ ] brightness/contrast enhance

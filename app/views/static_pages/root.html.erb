@@ -30,7 +30,7 @@
     }
     
     var placeRandomPhoto = function ($target, photos) {
-      $target.hide();
+      $target.fadeOut("slow");
       var $img = $("<img>");
       
       var randPhotoUrl = photos[randInt(0, photos.length - 1)].photoUrl;

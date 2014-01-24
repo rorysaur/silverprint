@@ -10,12 +10,45 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   },
   
   events: {
+    "click .popover" : "dismissPopovers",
     "click .show-follow" : "showUsers",
     "click .follow" : "follow",
     "click .unfollow" : "unfollow",
     "click #grid" : "toggleGrid",
     "click #vertical" : "toggleVertical",
     "click #sort" : "toggleSort"
+  },
+  
+  showPopovers: function () {
+    var view = this;
+    _(view.popoverTargets()).each(function ($target, index) {
+      $target.popover({
+        placement: "top",
+        content: view.popovers[index]
+      });
+      $target.popover("show");
+    });
+  },
+  
+  dismissPopovers: function (event) {
+    var view = this;
+    event.preventDefault();    
+    _(view.popoverTargets()).each(function ($target, index) {
+      $target.popover("destroy");
+    });    
+  },
+  
+  popovers: [
+    "In grid mode, turn on sorting, and drag and drop your photos to sort them."
+  ],
+  
+  popoverTargets: function () {
+    var targets = [
+      this.$(".thumbnail").first()
+    ];
+    
+    console.log(targets);
+    return targets;
   },
     
   follow: function (event) {
@@ -34,11 +67,6 @@ Silverprint.Views.UserShow = Backbone.View.extend({
         });
       }
     });
-  },
-  
-  popovers: {
-    showSort: "",
-    profilePic: "",
   },
   
   profilePicForm: function (event) {
@@ -92,8 +120,15 @@ Silverprint.Views.UserShow = Backbone.View.extend({
       view.$("#grid").addClass("active");
     }
     
-    view.rendered = true;
     view.$el.fadeIn(speed || "slow");
+    
+    if (Silverprint.currentUser.isDemoUser() &&
+        Silverprint.currentUser.id == view.model.id &&
+        !view.rendered) {
+      view.showPopovers();
+    }
+    
+    view.rendered = true;
     return view;
   },
   

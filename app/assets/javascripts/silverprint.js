@@ -22,7 +22,7 @@ window.Silverprint = {
     });
     
     this.installFullscreenHandler();
-    
+        
   },
   
   installFullscreenHandler: function () {

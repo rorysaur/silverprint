@@ -9,11 +9,43 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
   },
   
   events: {
+    "click .popover" : "dismissPopovers",
     "submit" : "submit",
     "change input[type=file]" : "handleFile",
     "click #crop" : "crop",
     "click #preview-url" : "handleUrl",
     "click .close" : "back"
+  },
+  
+  showPopovers: function () {
+    var view = this;
+    _(view.popoverTargets()).each(function ($target, index) {
+      $target.popover({
+        placement: "top",
+        content: view.popovers[index],
+      });
+      $target.popover("show");
+    });
+  },
+  
+  dismissPopovers: function (event) {
+    var view = this;
+    event.preventDefault();    
+    _(view.popoverTargets()).each(function ($target, index) {
+      $target.popover("destroy");
+    });    
+  },
+  
+  popovers: [
+    "Add a photo from your computer or from the internets, or try the default URL. (Crop only works on file uploads at the moment.)"
+  ],
+  
+  popoverTargets: function () {
+    var targets = [
+      this.$("#url")
+    ];
+    
+    return targets;
   },
     
   back: function (event) {
@@ -94,10 +126,6 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     view.$(".thumbnail").show();
   },
   
-  popovers: {
-    
-  },
-  
   render: function (speed) {
     var view = this;
     
@@ -116,6 +144,10 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     view.$("#newPhotoModal").modal({
       backdrop: "static"
     });
+    
+    if (Silverprint.currentUser.isDemoUser()) {
+      view.showPopovers();
+    }
 
     return view;
   },
