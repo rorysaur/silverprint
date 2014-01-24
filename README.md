@@ -60,11 +60,11 @@
 1.24.2014
 - [x] redo demo walkthrough
 - [x] empty feed alert
+- [x] 404/500 views
 - [ ] grid view hover username
 - [ ] fix sorting
 - [ ] about page
 - [ ] this readme
-- [ ] 404/500 views
 - [ ] choose file button
 - [ ] brightness/contrast enhance
 - [ ] photo effects
