@@ -61,10 +61,10 @@
 - [x] redo demo walkthrough
 - [x] empty feed alert
 - [x] 404/500 views
-- [ ] grid view hover username
-- [ ] about page
-- [ ] infinite scroll
+- [x] about page
 
+- [ ] grid view hover username
+- [ ] infinite scroll
 - [ ] this readme
 - [ ] choose file button
 - [ ] brightness/contrast enhance
