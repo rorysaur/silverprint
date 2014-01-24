@@ -12,7 +12,7 @@ class Photo < ActiveRecord::Base
       :grid => "300x300#",
       :thumbnail => "50x50#"
     },
-    :processors => [:cropper]
+    :processors => lambda { |instance| instance.processors },
   )
   
   validates_attachment(:photo, :presence => true,
@@ -49,8 +49,21 @@ class Photo < ActiveRecord::Base
     @height = height.to_i
   end
   
+  def processors
+    if @from_url
+      [:thumbnail]
+    else
+      [:cropper]
+    end
+  end
+  
   def liked_by?(user)
     self.likers.include?(user)
+  end
+  
+  def photo_from_url(url)
+    @from_url = true
+    self.photo = URI.parse(url)
   end
   
 end

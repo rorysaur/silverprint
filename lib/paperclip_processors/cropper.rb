@@ -2,8 +2,10 @@ module Paperclip
   class Cropper < Thumbnail
     def initialize(file, options = {}, attachment = nil)
       super
-      @current_geometry.width = target.width
-      @current_geometry.height = target.height
+      if target.width && target.height
+        @current_geometry.width = target.width
+        @current_geometry.height = target.height
+      end
       p target
     end
     
@@ -15,7 +17,11 @@ module Paperclip
       ]
       
       p crop_command
-      crop_command + super
+      if target.width && target.height && target.x && target.y
+        crop_command + super
+      else
+        []
+      end
     end
     
     def target

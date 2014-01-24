@@ -25,8 +25,13 @@ class Api::PhotosController < ApplicationController
     @photo.user = current_user
     @photo.x, @photo.y = params[:photo][:x], params[:photo][:y]
     @photo.width, @photo.height = params[:photo][:width], params[:photo][:height]
-    @photo.photo = params[:photo][:photo]
     
+    if params[:photo][:photo].nil? && params[:photo][:photo_url]
+      @photo.photo_from_url(params[:photo][:photo_url])
+    elsif params[:photo][:photo]
+      @photo.photo = params[:photo][:photo]
+    end
+        
     @photo.order_id = Time.now.to_i
     
     if @photo.save

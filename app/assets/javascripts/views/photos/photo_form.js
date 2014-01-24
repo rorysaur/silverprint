@@ -67,6 +67,7 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
       } else if (view.photoType == "profile") {
         view.model.set({ profile_pic: e.target.result })
       }
+      view.photoSet = true;
       view.$(".thumbnail").hide();
       view.$("#preview").attr("src", e.target.result);
       view.$(".thumbnail").show();
@@ -87,17 +88,10 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     var view = this;
     
     var url = $("#url").val();
-    
-    if (view.photoType == "photo") {
-      view.model.set({ photo_url: url }); 
-    } else if (view.photoType == "profile") {
-      view.model.set({ profile_pic_url: url })
-    }
       
     view.$(".thumbnail").hide();
     view.$("#preview").attr("src", url);
     view.$(".thumbnail").show();
-
   },
   
   popovers: {
@@ -112,6 +106,11 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     });
  
     view.$el.html(renderedContent);
+    
+    if (Silverprint.currentUser.isDemoUser) {
+    view.$("#url").val("http://placekitten.com/400/400");
+    }
+    
     view.$(".thumbnail").hide();
     view.$("#crop").hide();
     view.$("#newPhotoModal").modal({
@@ -125,6 +124,16 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
     var view = this;
     event.preventDefault();
     console.log("submitting...");
+    
+    if (!view.photoSet) {
+      var url = $("#url").val();
+    
+      if (view.photoType == "photo") {
+        view.model.set({ photo_url: url }); 
+      } else if (view.photoType == "profile") {
+        view.model.set({ profile_pic_url: url })
+      }
+    }
     
     var attrs = view.$el.serializeJSON();
     view.model.set(attrs.photo);
