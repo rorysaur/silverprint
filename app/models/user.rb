@@ -1,7 +1,7 @@
 require 'open-uri'
 
 class User < ActiveRecord::Base
-  attr_accessible :username, :password, :email, :profile_pic, :x, :y, :width,
+  attr_accessible :username, :password, :profile_pic, :x, :y, :width,
                   :height
   attr_reader :password
   attr_accessor :x, :y, :width, :height
@@ -10,12 +10,6 @@ class User < ActiveRecord::Base
   
   validates :username, :password_digest, :session_token, :presence => true
   validates :username, :session_token, :uniqueness => true
-  
-  validates(
-    :email, :presence => true,
-    :uniqueness => true,
-    :on => :create
-  )
   
   validates(
     :password,
@@ -34,7 +28,6 @@ class User < ActiveRecord::Base
     :convert_options => {
       :all => "-colorspace Gray"
     }
-    # :processors => [:cropper]
   )
   
   validates_attachment(:profile_pic, :size => { :in => 0..4096.kilobytes })

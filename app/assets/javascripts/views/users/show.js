@@ -4,8 +4,8 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     this.childViews = [];
     this.mode = "grid";
     this.photos = this.model.get("photos");
-    this.listenTo(this.photos, "add", this.render);
-    this.listenTo(this.model, "follow unfollow", this.render);
+    // this.listenTo(this.photos, "add remove sync", this.render);
+    this.listenTo(this.model, "follow unfollow change:photos", this.render);
     this.listenTo(Silverprint.currentUser, "newProfilePic", this.render);
   },
   
@@ -20,7 +20,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
   
   demoFlash: function () {
     var flash = $("<div>");
-    flash.addClass("alert alert-success");
+    flash.addClass("alert alert-info");
     flash.text(JST["alerts/show"]());
     return flash;
   },
@@ -216,7 +216,7 @@ Silverprint.Views.UserShow = Backbone.View.extend({
     }
     
     photo.save({}, {
-      success: function () {
+      success: function (photo) {
         view.photos.add(photo, { merge: true });
       },
       

@@ -62,13 +62,13 @@
 - [x] empty feed alert
 - [x] 404/500 views
 - [ ] grid view hover username
-- [ ] fix sorting
 - [ ] about page
+- [ ] infinite scroll
+
 - [ ] this readme
 - [ ] choose file button
 - [ ] brightness/contrast enhance
 - [ ] photo effects
 - [ ] pagination
 - [ ] friendlyId
-- [ ] infinite scroll
 - [ ] new follows/likes notifications
