@@ -110,7 +110,7 @@ Silverprint.Views.PhotoForm = Backbone.View.extend({
  
     view.$el.html(renderedContent);
     
-    if (Silverprint.currentUser.isDemoUser) {
+    if (Silverprint.currentUser.isDemoUser()) {
     view.$("#url").val("http://placekitten.com/400/400");
     }
     
