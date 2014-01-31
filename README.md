@@ -2,6 +2,8 @@
 
 ### the web instagram you've secretly been wishing for.
 
+-----
+
 #### what it is
 Upload, crop, sort, and share your photos. Follow other users and like their photos.
 
