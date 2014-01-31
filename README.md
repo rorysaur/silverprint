@@ -9,7 +9,7 @@
 #### what it is
 Upload, crop, sort, and share your photos. Follow other users and like their photos.
 
-#### (see the demo)[http://silverprint.me]
+####[see the demo](http://silverprint.me)
 
 #### features
 
