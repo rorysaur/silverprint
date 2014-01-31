@@ -36,7 +36,7 @@ Upload, crop, sort, and share your photos. Follow other users and like their pho
 
 #### history
 
-1.15.2104
+1.15.2014
 - [x] auth
 
 1.16.2014
